@@ -1,5 +1,5 @@
 # Automotive Service Repair System - Laravel Framework 5.6
-  ### Note: This is an open source project for repair system on the automotive industry. To help shops manage their orders online and meet project deadlines. To have a happy customer. 
+  ### Note: This is an open-source project for automotive service repair system, to help shops manage their orders online and track and meet project deadlines. 
 
 # Project Author 
 ```
