@@ -1,5 +1,5 @@
 # Automotive Service Repair System - Laravel Framework 5.6
-  ### Note: This is an open-source project for automotive service repair system, to help auto-shops manage their orders online and track and meet project deadlines. 
+ Note: This is an open-source project for automotive service repair system, to help auto-shops manage their orders online and track and meet project deadlines. 
 
 # Project Author 
 ```
@@ -20,7 +20,7 @@ Project Name: PrimeSys
 # Project Set-up Guide
 ## Step 1: Install Laravel
 
-### Note: If you have not yet installed Laravel, follow this specific steps or refer to the documentation of Laravel at www.laravel.com/docs/5.6/installation
+Note: If you have not yet installed Laravel, follow this specific steps or refer to the documentation of Laravel at www.laravel.com/docs/5.6/installation
 
 ```
 composer global require "laravel/installer"
