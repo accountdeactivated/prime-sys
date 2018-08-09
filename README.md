@@ -20,7 +20,7 @@ Project Name: PrimeSys
 # Project Set-up Guide
 ## Step 1: Install Laravel
 
-Note: If you have not yet installed Laravel, follow this specific steps or refer to the documentation of Laravel at www.laravel.com/docs/5.6/installation
+Note: If you have not yet installed Laravel, follow these specific steps or refer to the documentation of Laravel at www.laravel.com/docs/5.6/installation
 
 ```
 composer global require "laravel/installer"
