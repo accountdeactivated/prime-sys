@@ -38,6 +38,7 @@ Route::resource('supplierDetail', 'SupplierOrderDetailController');
 Route::resource('client', 'ClientsController');
 Route::resource('account', 'AccountsController');
 Route::resource('administrator', 'AdministratorsController');
+Route::resource('dashboard', 'DashboardsController');
 
 //Live AJAX Update
 //Done By: PrivateAirJET
