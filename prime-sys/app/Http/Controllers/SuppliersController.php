@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Materials;
 use App\Suppliers;
 use Illuminate\Http\Request;
 
@@ -16,8 +17,11 @@ class SuppliersController extends Controller
     {
         $sup = Suppliers::all();
         $sup = $sup->reverse();
+        $mat = Materials::all();
+
         return view('supplier')
-            ->with('suppliers', $sup);
+            ->with('suppliers', $sup)
+            ->with('materials', $mat);
     }
 
     /**

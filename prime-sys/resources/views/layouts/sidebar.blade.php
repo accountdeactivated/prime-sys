@@ -14,12 +14,6 @@
                 <li class="nav-item {{{ (Request::is('order') ? 'active' : '') }}}">
                     <a class="nav-link" href="./Orders">
                         <i class="material-icons">file_copy</i>
-                        <p>Supplier Order</p>
-                    </a>
-                </li>
-                <li class="nav-item {{{ (Request::is('order') ? 'active' : '') }}}">
-                    <a class="nav-link" href="./Orders">
-                        <i class="material-icons">file_copy</i>
                         <p>Orders</p>
                     </a>
                 </li>
