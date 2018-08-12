@@ -17,8 +17,10 @@
       <div class="wrapper ">
       <div class="sidebar" data-color="purple" data-background-color="white" data-image={{asset('img/sidebar-1.jpg')}}></div>
 
-
-      <div id="addNewService" class="modal">
+        <!--modal_starts_here 
+        commented by: PrivateAirJET
+        -->
+      <div id="addNewServiceModal" class="modal">
         <div class="modal-content">
           <h4>Modal Header</h4>
           <p>A bunch of text</p>
@@ -27,6 +29,10 @@
           <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
         </div>
       </div>
+       <!--modal_ends_here 
+        commented by: PrivateAirJET
+        -->
+
       <div class="main-panel">
          <div class="content">
             <div class="container-fluid">
@@ -35,7 +41,7 @@
                      <div class="card">
                         <div class="card-header card-header-primary">
                            <h4 class="card-title ">Services
-                              <button data-toggle="modal" data-target="addNewService" type="button" rel="tooltip" title="Add New Service" class="btn btn-primary btn-fab btn-fab-mini btn-round modal-trigger">
+                              <button id="addNewServiceButton"type="button" rel="tooltip" title="Add New Service" class="btn btn-primary btn-fab btn-fab-mini btn-round">
                               <i class="material-icons">add_circle</i>
                               </button>
                            </h4>
@@ -77,6 +83,15 @@
       <script src={{asset('js/plugins/bootstrap-notify.js')}}></script>
       <script src={{asset('js/material-dashboard.min.js?v=2.1.0')}}></script>
       <script src={{asset('demo/demo.js')}}></script>
+
+      <!--start custom script section-->
+      <script type="text/javascript">
+        $(document).on('click','#addNewServiceButton'function(){
+            $('#addNewServiceModal').leanModal(); 
+        });
+      </script>
+      <!--end custom script section-->
+
    </body>
 </html>
 <script type="text/javascript">
