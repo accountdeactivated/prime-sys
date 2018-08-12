@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('login_view');
-});
+Route::get('/', function () {return view('login_view');});
+Route::get('/dashboard', function () {return view('dashboard');});
+
