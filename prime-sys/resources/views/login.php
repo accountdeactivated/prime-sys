@@ -11,11 +11,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 </head>
 
-<!--<body style="background: #c0392b;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #8e44ad, #c0392b);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #8e44ad, #c0392b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-">-->
-    
 <body background="../../../public/img/gradient-bg.jpg" style="background-attachment: fixed; background-repeat:no-repeat;
    background-size:cover;">
 
@@ -29,11 +24,8 @@ background: linear-gradient(to right, #8e44ad, #c0392b); /* W3C, IE 10+/ Edge, F
                 </center>
                 <div class="divider"></div>
                 <blockquote>
-                    <?php if(isset($_SESSION)) {
-                        echo $this->session->flashdata('flash_data');
-                    } ?>
+                    
                 </blockquote>
-                <form action="<?= site_url('login') ?>" method="post">
                     <div class="input-field">
                         <i class="material-icons prefix">account_circle</i>
                         <input name="userName" type="text" class="validate" />
@@ -50,22 +42,16 @@ background: linear-gradient(to right, #8e44ad, #c0392b); /* W3C, IE 10+/ Edge, F
                     <div class="divider"></div>
                     <div class="row">
                         <div class="input-field col s6 m6 l6">
-                            <p class="margin medium-small"><a href="<?= site_url('createAccount') ?>">Register Now!</a></p>
+                            <p class="margin medium-small"><a>Register Now!</a></p>
                         </div>
                         <div class="input-field col s6 m6 l6">
                             <p class="margin right-align medium-small"><a href="page-forgot-password.html">Forgot password?</a></p>
                         </div>
                     </div>
-                </form>
             </div>
             <br><br>
         </div>
     </div>
-
-    <!--<footer class="page-footer blue darken-4" >
-        <center>© Barleta Precision Manufacturing, Inc. Copyright 2018</center>
-    </footer>-->
-
 </body>
 
 </html>
