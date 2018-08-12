@@ -9,7 +9,6 @@
       <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
       <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
       <link href={{asset('css/material-dashboard.css?v=2.1.0')}} rel="stylesheet" />
       <link href={{asset('demo/demo.css')}} rel="stylesheet" />
    </head>
@@ -24,9 +23,6 @@
         <div class="modal-content">
           <h4>Modal Header</h4>
           <p>A bunch of text</p>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
         </div>
       </div>
        <!--modal_ends_here 
@@ -51,6 +47,7 @@
                            <div class="table-responsive">
                               <table class="table" id="dataTable" width="" height="150">
                                  <thead class=" text-primary">
+                                    <th>#</th>
                                     <th>Name</th>
                                     <th>Description</th>
                                     <th>Type</th>
@@ -74,7 +71,8 @@
             </div>
          </div>
       </div>
-  
+      
+      <!--general script section-->
       <script src={{asset('js/core/jquery.min.js')}}></script>
       <script src={{asset('js/core/popper.min.js')}}></script>
       <script src={{asset('js/core/bootstrap-material-design.min.js')}}></script>
@@ -86,8 +84,8 @@
 
       <!--start custom script section-->
       <script type="text/javascript">
-        $(document).on('click','#addNewServiceButton'function(){
-            $('#addNewServiceModal').leanModal(); 
+        $(document).on('click','#addNewServiceButton',function(){
+            $('#addNewServiceModal').modal(); 
         });
       </script>
       <!--end custom script section-->
