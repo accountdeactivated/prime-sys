@@ -40,6 +40,8 @@ Route::resource('account', 'AccountsController');
 Route::resource('administrator', 'AdministratorsController');
 Route::resource('dashboard', 'DashboardsController');
 
+//Done By: PrivateAirJET
+
 //Live AJAX Update
 //Done By: PrivateAirJET
 Route::post('liveAddService','ServiceAddLiveUpdateController@liveUpdate');
