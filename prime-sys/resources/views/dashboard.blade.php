@@ -417,42 +417,26 @@
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-6">
-                        <div class="card card-chart">
-                           <div class="card-header card-header-success">
-                              <div class="ct-chart" id="dailySalesChart"></div>
-                           </div>
-                           <div class="card-body">
-                              <h4 href="#" rel="tooltip" title="View Daily Sales Report" class="card-title btn btn-primary btn-round btn-success">Daily Sales</h4>
-                              <p class="card-category">
-                                 <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.
-                              </p>
-                           </div>
-                           <div class="card-footer">
-                              <div class="stats">
-                                 <i class="material-icons">access_time</i> updated 4 minutes ago
-                              </div>
-                           </div>
-                        </div>
-                     </div>
                   </div>
                </div>
             </div>
          </div>
       </div>
-      <script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
-      <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
-      <script src="../assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
-      <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-      <script src="../assets/js/plugins/chartist.min.js"></script>
-      <script src="../assets/js/plugins/bootstrap-notify.js"></script>
-      <script src="../assets/js/material-dashboard.min.js?v=2.1.0" type="text/javascript"></script>
-      <script src="/assets/demo/demo.js"></script>
+      <script src={{asset('js/core/jquery.min.js')}}></script>
+      <script src={{asset('js/core/popper.min.js')}}></script>
+      <script src={{asset('js/core/bootstrap-material-design.min.js')}}></script>
+      <script src={{asset('js/plugins/perfect-scrollbar.jquery.min.js')}}></script>
+      <script src={{asset('js/plugins/chartist.min.js')}}></script>
+      <script src={{asset('js/plugins/bootstrap-notify.js')}}></script>
+      <script src={{asset('js/material-dashboard.min.js?v=2.1.0')}}></script>
+      <script src={{asset('demo/demo.js')}}></script>
+      {{-- GOOGLE MAPS API Commented Out By: PrivateAirJET <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> --}}
+
       <script>
          $(document).ready(function() {
            md.initDashboardPageCharts();
          });
       </script>
+      
    </body>
 </html>
