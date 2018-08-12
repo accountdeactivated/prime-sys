@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services;
 
 class ServicesController extends Controller
 {
@@ -13,7 +14,9 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        //
+        $services = Services::all();
+        return view('service')
+                ->with('services',$services);
     }
 
     /**
@@ -79,6 +82,7 @@ class ServicesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $service = Services::where('id', $id)->delete();
+        return response()->json($service);
     }
 }
