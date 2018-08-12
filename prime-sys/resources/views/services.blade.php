@@ -9,6 +9,7 @@
       <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
       <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
       <link href={{asset('css/material-dashboard.css?v=2.1.0')}} rel="stylesheet" />
       <link href={{asset('demo/demo.css')}} rel="stylesheet" />
    </head>
@@ -17,7 +18,7 @@
       <div class="sidebar" data-color="purple" data-background-color="white" data-image={{asset('img/sidebar-1.jpg')}}></div>
 
 
-      <div id="modal1" class="modal">
+      <div id="addNewService" class="modal">
         <div class="modal-content">
           <h4>Modal Header</h4>
           <p>A bunch of text</p>
@@ -26,7 +27,6 @@
           <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
         </div>
       </div>
-
       <div class="main-panel">
          <div class="content">
             <div class="container-fluid">
@@ -35,7 +35,7 @@
                      <div class="card">
                         <div class="card-header card-header-primary">
                            <h4 class="card-title ">Services
-                              <button type="button" rel="tooltip" title="Add New Service" class="btn btn-primary btn-fab btn-fab-mini btn-round">
+                              <button data-toggle="modal" data-target="addNewService" type="button" rel="tooltip" title="Add New Service" class="btn btn-primary btn-fab btn-fab-mini btn-round modal-trigger">
                               <i class="material-icons">add_circle</i>
                               </button>
                            </h4>
@@ -69,20 +69,6 @@
          </div>
       </div>
   
-      <div id="delete" class="modal fade" role="dialog">
-         <div class="modal-dialog">
-            <div class="modal-content">
-               <div class="modal-body">
-                  <div class="row">
-                     <div class="col-lg-12 text-center">
-                        Are you sure you want to delete this service? <br>
-                        (This would lead to a permanent deletion of this information)
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
       <script src={{asset('js/core/jquery.min.js')}}></script>
       <script src={{asset('js/core/popper.min.js')}}></script>
       <script src={{asset('js/core/bootstrap-material-design.min.js')}}></script>
