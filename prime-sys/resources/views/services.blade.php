@@ -14,8 +14,19 @@
    </head>
    <body class="">
       <div class="wrapper ">
-      <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+      <div class="sidebar" data-color="purple" data-background-color="white" data-image={{asset('img/sidebar-1.jpg')}}></div>
+
+
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <h4>Modal Header</h4>
+          <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
       </div>
+
       <div class="main-panel">
          <div class="content">
             <div class="container-fluid">
@@ -28,27 +39,17 @@
                               <i class="material-icons">add_circle</i>
                               </button>
                            </h4>
-                           <p class="card-category"> Here is a list of all the services offered</p>
+                           <p class="card-category" style="color:white;"> Here is a list of all the services offered</p>
                         </div>
                         <div class="card-body">
                            <div class="table-responsive">
                               <table class="table" id="dataTable" width="" height="150">
                                  <thead class=" text-primary">
-                                    <th>
-                                       Name
-                                    </th>
-                                    <th>
-                                       Description
-                                    </th>
-                                    <th>
-                                       Type
-                                    </th>
-                                    <th>
-                                       Cost
-                                    </th>
-                                    <th class="text-center">
-                                       Actions
-                                    </th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    <th>Cost</th>
+                                    <th class="text-center">Actions</th>
                                  </thead>
                                  <tbody>
                                  </tbody>
@@ -67,39 +68,7 @@
             </div>
          </div>
       </div>
-      <div id="myModalView" class="modal fade" role="dialog">
-         <div class="modal-dialog">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <h4 class="modal-title">View Item</h4>
-               </div>
-               <div class="modal-body">
-                  <div class="row">
-                     <div class="col-lg-12">
-                        <table class="table">
-                           <tr>
-                              <td><b>First Name</b></td>
-                              <td><b id="modal_servicename"></b></td>
-                           </tr>
-                           <tr>
-                              <td><b>Last Name</b></td>
-                              <td><b id="modal_servicetype"></b></td>
-                           </tr>
-                           <tr>
-                              <td><b>User Name</b></td>
-                              <td><b id="modal_description"></b></td>
-                           </tr>
-                           <tr>
-                              <td><b>Contact Number</b></td>
-                              <td><b id="modal_cost"></b></td>
-                           </tr>
-                        </table>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
+  
       <div id="delete" class="modal fade" role="dialog">
          <div class="modal-dialog">
             <div class="modal-content">
