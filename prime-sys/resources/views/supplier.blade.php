@@ -17,7 +17,16 @@
    </head>
    <body class="">
       <div class="wrapper ">
-      <div class="sidebar" data-color="purple" data-background-color="white" data-image={{asset('img/sidebar-1.jpg')}}></div>
+      <div class="sidebar" data-color="purple" data-background-color="white" data-image={{asset('img/sidebar-1.jpg')}}>
+          <div class="logo">
+              <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+                  Prime Auto Restoration
+              </a>
+          </div>
+          <div class="sidebar-wrapper">
+              @include('layouts.sidebar')
+          </div>
+      </div>
 
         <!--modal_starts_here 
         commented by: PrivateAirJET
@@ -26,19 +35,35 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" style="color:black;">Add New Service</h5>
+                    <h5 class="modal-title" style="color:black;">Add New Supplier</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" style="color:black;">
 
-                    <!--service_name-->
-                    <label for="serviceName" style="color:black;">Service Name</label>
-                    <input type="email" class="form-control" id="serviceName" placeholder="Enter the service name">
-                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the name of the service. <b style="color:#E53935;">*Required</b></span>
+                {!! Form::open(array('route'=>'supplier.store'))!!}
+                <div class="modal-body" style="color:black;">
+                    <label for="serviceName" style="color:black;">Supplier Name</label>
+                    <input type="text" class="form-control" id="serviceName" name="name" placeholder="Enter name">
+                    <br>
+
+                    <label for="serviceName" style="color:black;">Address</label>
+                    <input type="text" class="form-control" id="serviceName" name="address" placeholder="Enter address">
+                    <br>
+
+                    <label for="serviceName" style="color:black;">Contact Person</label>
+                    <input type="text" class="form-control" id="serviceName" name="contactPerson" placeholder="Enter contact person">
+                    <br>
+
+                    <label for="serviceName" style="color:black;">Contact Number</label>
+                    <input type="number" class="form-control" id="serviceName" name="contactNumber" placeholder="Enter contact #">
                     <br>
                 </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-md btn-block text-uppercase waves-effect waves-light" style="background-color: #4c87ed; box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);" type="submit">Submit</button>
+                </div>
+                {!!Form::close()!!}
+            </div>
             </div>
         </div>
        <!--modal_ends_here 
@@ -62,43 +87,33 @@
                   <div class="col-md-12">
                      <div class="card">
                         <div class="card-header card-header-primary">
-                           <h4 class="card-title ">Services
-                              <button id="addNewServiceButton" data-toggle="modal" data-target="#addNewServiceModal" type=" button" rel="tooltip" title="Add New Service" class="btn btn-primary btn-fab btn-fab-mini btn-round">
+                           <h4 class="card-title ">Suppliers
+                              <button id="addNewServiceButton" data-toggle="modal" data-target="#addNewSupplierModal" type=" button" rel="tooltip" title="Add New Service" class="btn btn-primary btn-fab btn-fab-mini btn-round">
                               <i class="material-icons">add_circle</i>
                               </button>
                            </h4>
-                           <p class="card-category" style="color:white;"> Here is a list of all the services offered</p>
+                           <p class="card-category" style="color:white;"> Here is a list of all the suppliers</p>
                         </div>
                         
                         <div class="card-body">
                            <div class="table-responsive">
                               <table class="table" id="dataTable" width="" height="150">
                                  <thead class="text-primary" style="font-size:20px;">
-                                    <th>Service ID</th>
                                     <th><span class="fa fa-vcard" role="icon"></span> Name</th>
-                                    <th><span class="fa fa-file-text" role="icon"></span> Type</th>
-                                    <th><span class="fa fa-newspaper-o" role="icon"></span> Description</th>
-                                    <th><span class="fa fa-money" role="icon"></span> Cost (PHP)</th>
-                                    <th> <span class="fa fa-gears" role="icon"></span> Actions</th>
+                                    <th><span class="fa fa-file-text" role="icon"></span> Address</th>
+                                    <th><span class="fa fa-newspaper-o" role="icon"></span> Contact Person</th>
+                                    <th><span class="fa fa-money" role="icon"></span> Contact Number</th>
                                  </thead>
-                                 <tbody id="servicesList" style="font-size:20px;">
-                                    @if(isset($services))
-                                        @php($count=0)
-                                        @foreach($services as $service)
-                                        @php($count=$count+1)
-                                        <tr id="serviceNumber{{$service->id}}">
-                                            <td id="serviceID{{$service->id}}">{{$service->id}}</td>
-                                            <td id="serviceName{{$service->id}}">{{$service->name}}</td>
-                                            <td id="serviceType{{$service->id}}">{{$service->type}}</td>
-                                            <td id="serviceDescription{{$service->id}}">{{$service->description}}</td>
-                                            <td id="serviceCost{{$service->id}}">{{$service->cost}}</td>
-                                            <td>
-                                                <span data-id={{$service->id}} data-name={{$service->name}} data-type={{$service->type}} data-description={{$service->description}} data-cost={{$service->cost}} style="color:#4c87ed;" class="fa fa-edit editService fa-2x" role="icon"></span>
-                                                <span data-id={{$service->id}} style="color:#E53935; padding-left:10px;" class="fa fa-trash deleteService fa-2x" role="icon"></span>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    @endif
+                                 <tbody id="suppliers" style="font-size:20px;">
+                                  @foreach($suppliers as $supplier)
+                                      <tr>
+                                          <td>{{$supplier->name}}</td>
+                                          <td>{{$supplier->address}}</td>
+                                          <td class="text-center">{{$supplier->contactPerson}}</td>
+                                          <td class="text-center">{{$supplier->contactNumber}}</td>
+                                      </tr>
+                                  @endforeach
+                                  </tbody>
                                  </tbody>
                               </table>
                            </div>
@@ -109,7 +124,7 @@
             </div>
          </div>
       </div>
-      
+   </body>
       <!--general script section-->
       <script src={{asset('js/core/jquery.min.js')}}></script>
       <script src={{asset('js/core/popper.min.js')}}></script>
@@ -130,5 +145,5 @@
       </script> --}}
       <!--end custom script section-->
      
-   </body>
+
 </html>

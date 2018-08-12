@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Suppliers;
 use Illuminate\Http\Request;
 
 class SuppliersController extends Controller
@@ -13,7 +14,10 @@ class SuppliersController extends Controller
      */
     public function index()
     {
-        //
+        $sup = Suppliers::all();
+        $sup = $sup->reverse();
+        return view('supplier')
+            ->with('suppliers', $sup);
     }
 
     /**
@@ -34,7 +38,20 @@ class SuppliersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fields = $request->all();
+        $driver = new Suppliers();
+
+
+        $driver->name = $fields['name'];
+        $driver->address = $fields['address'];
+        $driver->contactPerson = $fields['contactPerson'];
+        $driver->ContactNumber = $fields['contactNumber'];
+
+        $driver->created_at = null;
+        $driver->updated_at = null;
+        $driver->save();
+        //Session::flash('success','Successfully added a fucking supplier!');
+        return redirect("/supplier");
     }
 
     /**
