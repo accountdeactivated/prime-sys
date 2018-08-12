@@ -15,5 +15,12 @@
 //Done By: PrivateAirJET
 Route::get('/', function () {return view('login_view');});
 Route::get('/dashboard', function () {return view('dashboard');});
-Route::get('/services', function () {return view('services');});
+Route::get('/service', function () {return view('service');});
+Route::get('/material', function () {return view('material');});
+Route::get('/client', function () {return view('client');});
+Route::get('/user', function () {return view('user');});
+Route::get('/car', function () {return view('car');});
+Route::get('/carmaker', function () {return view('carmaker');});
+
+
 
