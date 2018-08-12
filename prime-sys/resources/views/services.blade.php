@@ -48,7 +48,7 @@
                      <div class="card">
                         <div class="card-header card-header-primary">
                            <h4 class="card-title ">Services
-                              <button id="addNewServiceButton"type="button" rel="tooltip" title="Add New Service" class="btn btn-primary btn-fab btn-fab-mini btn-round">
+                              <button id="addNewServiceButton" data-toggle="modal" data-target="#addNewServiceModal" type=" button" rel="tooltip" title="Add New Service" class="btn btn-primary btn-fab btn-fab-mini btn-round">
                               <i class="material-icons">add_circle</i>
                               </button>
                            </h4>
@@ -95,11 +95,11 @@
       {{-- <script type="text/javascript" src={{asset('materialize/js/materialize.min.js')}}></script> --}}
 
       <!--start custom script section-->
-      <script type="text/javascript">
+      {{-- <script type="text/javascript">
         $(document).on('click','#addNewServiceButton',function(){
             $('#addNewServiceModal').modal('open'); 
         });
-      </script>
+      </script> --}}
       <!--end custom script section-->
 
    </body>
