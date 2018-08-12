@@ -17,7 +17,17 @@
    </head>
    <body class="">
       <div class="wrapper ">
-      <div class="sidebar" data-color="purple" data-background-color="white" data-image={{asset('img/sidebar-1.jpg')}}></div>
+      <div class="sidebar" data-color="purple" data-background-color="white" data-image={{asset('img/sidebar-1.jpg')}}>
+          <div class="logo">
+              <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+                  Prime Auto Restoration
+              </a>
+          </div>
+          <div class="sidebar-wrapper">
+              @include('layouts.sidebar')
+          </div>
+      </div>
+
 
         <!--modal_starts_here 
         commented by: PrivateAirJET
