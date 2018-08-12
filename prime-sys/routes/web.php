@@ -26,7 +26,18 @@
 
 //Implementation of Resource Routes
 //Done By: PrivateAirJET
+Route::resource('material', 'MaterialsController');
 Route::resource('service', 'ServicesController');
+Route::resource('car', 'CarsController');
+Route::resource('carmaker', 'CarMakersController');
+Route::resource('order', 'OrdersController');
+Route::resource('orderDetail', 'OrderDetailsController');
+Route::resource('supplier', 'SuppliersController');
+Route::resource('supplierOrder', 'SupplierOrdersController');
+Route::resource('supplierDetail', 'SupplierOrderDetailController');
+Route::resource('client', 'ClientsController');
+Route::resource('account', 'AccountsController');
+Route::resource('administrator', 'AdministratorsController');
 
 //Live AJAX Update
 //Done By: PrivateAirJET
@@ -34,13 +45,6 @@ Route::post('liveAddService','ServiceAddLiveUpdateController@liveUpdate');
 Route::post('liveEditService','ServiceEditLiveUpdateController@liveUpdate');
 
 
-
-
-
-
-
-
-
+//Auth Route
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
