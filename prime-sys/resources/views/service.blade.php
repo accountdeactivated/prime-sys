@@ -29,7 +29,7 @@
       </div>
 
 
-        <!--modal_starts_here 
+        <!--modal_starts_hre
         commented by: PrivateAirJET
         -->
         <div id="addNewServiceModal" class="modal" tabindex="-1" role="dialog">
