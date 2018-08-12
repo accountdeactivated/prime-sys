@@ -11,6 +11,9 @@
 |
 */
 
+//Prime System Web Application Routes 
+//Done By: PrivateAirJET
 Route::get('/', function () {return view('login_view');});
 Route::get('/dashboard', function () {return view('dashboard');});
+Route::get('/services', function () {return view('services');});
 
