@@ -24,7 +24,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add New Service</h5>
+                    <h5 class="modal-title" style="color:black;">Add New Service</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -32,29 +32,29 @@
                 <div class="modal-body" style="color:black;">
 
                     <!--service_name-->
-                    <label for="serviceName">Service Name</label>
+                    <label for="serviceName" style="color:black;">Service Name</label>
                     <input type="email" class="form-control" id="serviceName" placeholder="Enter the service name">
                     <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the name of the service. <b style="color:#E53935;">*Required</b></span>
-
+                    <br>
                     <!--service_type-->
-                    <label for="serviceType">Service Type</label>
-                    <select class="form-control selectpicker" data-style="btn btn-link" id="serviceType">
+                    <label for="serviceType" style="margin-top:20px; color:black;">Service Type</label>
+                    <select class="form-control" data-style="btn btn-link" id="serviceType">
                         <option selected disabled>Choose a service type</option>
                         <option>Repair</option>
                         <option>Painting</option>
                         <option>Washing</option>
                     </select>
                     <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the type of the service. <b style="color:#E53935;">*Required</b></span>
-
+                    <br>
                     <!--service_description-->
-                    <div class="form-group">
-                        <label for="serviceDescription">Service Description</label>
+                    <div class="form-group" style="margin-bottom:0px;">
+                        <label for="serviceDescription" style="margin-top:20px; color:black;">Service Description</label>
                         <textarea class="form-control" id="serviceDescription" rows="3"></textarea>
                     </div>
                     <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the brief description of the service. <b style="color:#E53935;">*Required</b></span>
-
+                    <br>
                     <!--service_cost-->
-                    <label for="serviceCost">Service Cost</label>
+                    <label for="serviceCost" style="margin-top:20px; color:black;">Service Cost</label>
                     <input type="number" class="form-control" id="serviceCost" placeholder="Enter the service cost.">
                     <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the cost of the service. <b style="color:#E53935;">*Required</b></span>
                 </div>
