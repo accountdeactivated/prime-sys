@@ -40,7 +40,8 @@ Route::resource('account', 'AccountsController');
 Route::resource('administrator', 'AdministratorsController');
 Route::resource('dashboard', 'DashboardsController');
 
-//Done By: PrivateAirJET
+//Done By: nandarionndr1
+Route::post('/supplier/create', 'SuppliersController@create')->name('supplier.create');
 
 //Live AJAX Update
 //Done By: PrivateAirJET

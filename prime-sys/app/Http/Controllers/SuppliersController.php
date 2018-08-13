@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Materials;
+use App\SupplierOrderDetails;
+use App\SupplierOrders;
 use App\Suppliers;
 use Illuminate\Http\Request;
 
@@ -29,9 +31,42 @@ class SuppliersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        //create a supplier and supplier order
+        $supOrd = new SupplierOrders();
+        $materials=$request->materials;
+        $qtys=$request->qtys;
+        $prices=$request->prices;
+        $total = 0;
+
+        foreach ($qtys as $qty){
+            $total += $qty;
+        }
+        $supOrd->supplierID = $request->supplier;
+        $supOrd->total_qty = $total;
+        $supOrd->save();
+
+        $supOrd->created_at = null;
+        $supOrd->updated_at = null;
+
+        $last_insert_id = $supOrd->id;
+        $ctr=0;
+        foreach ($materials as $material){
+
+
+            $supOrdDet = new SupplierOrderDetails();
+            $supOrdDet->materialID = $material;
+            $supOrdDet->supplierOrderID = $last_insert_id;
+            $supOrdDet->price_each = $prices[$ctr];
+            $supOrdDet->qty = $qtys[$ctr];
+            $supOrdDet->total_price = $prices[$ctr] * $qtys[$ctr];
+
+
+            $supOrdDet->save();
+            $ctr+=1;
+        }
+        return redirect("/supplier");
     }
 
     /**

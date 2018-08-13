@@ -77,12 +77,14 @@
                         <h4 class="modal-title" style="color:black; font-family:Helvetica,Arial,sans-serif;">Add Purchase Order/s</h4>
                     </div>
                     <div class="modal-body">
+
+                        {!! Form::open(array('route'=>'supplier.create'))!!}
                             <label for="supplierList" class="control-label" style="color:black; font-family:Helvetica,Arial,sans-serif;"><b>Supplier:</b></label>
-                            <select name="supplierList" class="form-control" id="supplierList" style="margin-bottom:10px;">
+                            <select name="supplier" class="form-control" id="supplierList" style="margin-bottom:10px;">
                                 <option selected disabled>Choose a Supplier</option>
                                 @if(isset($suppliers))
                                     @foreach ($suppliers as $supplier)
-                                        <option>{{$supplier->name}}</option>
+                                        <option value="{{$supplier->id}}">{{$supplier->name}}</option>
                                     @endforeach
                                 @endif
                             </select>
@@ -94,7 +96,7 @@
                                 <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Select the supplier's material order based on the list. <b style="color:#E53935;">*Required</b></span>
                                 <br>
                                 <label for="order" class="control-label">
-                                    <button id="materialAdd" class="btn btn-primary pull-right" style="border-radius: 80px" type="button"><span class="btn-label"><i class="fa fa-plus-square"></i></span> Add Material <div class="ripple-container"></div></button>
+                                    <button id="materialAdd" class="btn btn-primary" style="border-radius: 80px" type="button"><span class="btn-label"><i class="fa fa-plus-square"></i></span> Add Material <div class="ripple-container"></div></button>
                                 </label>
                                 <div class="table-responsive" style="margin-top:10px;">
                                     <table id="materialOrderTable"class="table color-bordered-table info-bordered-table" style="box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); font-family:Helvetica,Arial,sans-serif;">
@@ -105,9 +107,7 @@
                                             <th>Price per piece</th>
                                             <th><i class="fa fa-gear"></i></th>
                                         </tr>
-                                        <!--
 
-                                        -->
                                         </thead>
                                         <tbody id="orderMaterialList">
                                         <tr style="color:black;" id="orderListNum1">
@@ -119,8 +119,8 @@
                                                     @endforeach
                                                 </select>
                                             </td>
-                                            <td><input value="" type="number" name="qtys[]"  min="1" style="font-size:12px;" class="form-control orderInventory addableQty" placeholder="Quantity Ordered"></td>
-                                            <td><input value="" type="number"  name="prices[]"  min="1" style="font-size:12px;" class="form-control orderInventory addablePrice" placeholder="Price Each"></td>
+                                            <td><input value="" type="number" name="qtys[]"  min="1" step="0.01" style="font-size:12px;" class="form-control orderInventory addableQty" placeholder="Quantity Ordered"></td>
+                                            <td><input value="" type="number"  name="prices[]"  min="1" step="0.01" style="font-size:12px;" class="form-control orderInventory addablePrice" placeholder="Price Each"></td>
                                             <td><i style="font-size:20px; color:#E53935; " class="linea linea-aerrow removeAddOrder" data-icon="&#xe04a;">x</i></td>
                                         </tr>
                                         </tbody>
@@ -133,6 +133,8 @@
                     <div class="modal-footer">
                         <button id="submitOrderList" class="btn btn-danger btn-md btn-block text-uppercase waves-effect waves-light" style="background-color: #4c87ed; box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);" type="submit">Submit</button>
                     </div>
+
+                    {!! Form::close() !!}
                 </div>
                 </div>
         </div>
@@ -267,7 +269,7 @@
             '@if(isset($materials))<tr id="orderListNum'+count+'" style="color:black;">'+
             '<td> <select style="font-size:12px;" name="materials[]" class="form-control orderName"><option selected> Choose a Material</option>@foreach ($materials as $material)<option value="{{$material->id}}">{{$material->name}}</option> @endforeach</select> </td>' +
             '<td><input value="" type="number" min="1" style="font-size:12px;" name="qtys[]" class="form-control orderInventory addableQty" placeholder="Quantity Ordered"></td> ' +
-            '<td><input value="" type="number" min="1" style="font-size:12px;" name="prices[]" class="form-control orderInventory addablePrice" placeholder="Price Each"></td>' +
+            '<td><input value="" type="number" min="1" style="font-size:12px;" name="prices[]" step="0.01" class="form-control orderInventory addablePrice" placeholder="Price Each"></td>' +
             '<td><i style="font-size:20px; color:#E53935; " class="linea linea-aerrow removeAddOrder" data-icon="&#xe04a;"></td> ' +
             '</tr>@endif');
     });
