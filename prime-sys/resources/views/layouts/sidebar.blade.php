@@ -23,8 +23,8 @@
         </a>
     </li>
     @elseif(Auth::user()->user_access==2)
-        <li class="nav-item {{{ (Request::is('sorder') ? 'active' : '') }}}">
-            <a class="nav-link" href="./sorder">
+        <li class="nav-item {{{ (Request::is('supplierOrder') ? 'active' : '') }}}">
+            <a class="nav-link" href="./supplierOrder">
                 <i class="material-icons">class</i>
                 <p>Supplier Orders</p>
             </a>

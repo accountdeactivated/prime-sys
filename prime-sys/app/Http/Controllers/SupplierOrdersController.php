@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Materials;
+use App\SupplierOrderDetails;
+use App\SupplierOrders;
+use App\Suppliers;
 use Illuminate\Http\Request;
 
 class SupplierOrdersController extends Controller
@@ -13,7 +17,23 @@ class SupplierOrdersController extends Controller
      */
     public function index()
     {
-        //
+        $sup = Suppliers::all();
+        $sup = $sup->reverse();
+        $mat = Materials::all();
+        $supOrder = SupplierOrders::all();
+        $sup = $sup->reverse();
+
+
+        foreach($supOrder as $sp){
+            $sp['supplierorderdetails'] = $this->getSOsDetailbySOID($sp->id);
+            $sp['supplier'] = $this->getSupplier($sp->supplierID);
+        }
+
+        return view('supplierorder')
+            ->with('suppliersorders', $supOrder)
+            ->with('suppliers', $sup)
+            ->with('materials', $mat);
+
     }
 
     /**
@@ -32,10 +52,57 @@ class SupplierOrdersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public static function getSOsDetailbySOID($id){
+        $so = SupplierOrderDetails::all();
+
+        $so = $so->filter(function ($so) use ($id) {
+            return $so->supplierOrderID == $id;
+        });
+
+        return $so;
+    }
+    public static function getSupplier($id){
+        $sup = Suppliers::where('id',$id)->first();
+        return $sup;
+    }
     public function store(Request $request)
     {
-        //
+        //create a supplier and supplier order
+        $supOrd = new SupplierOrders();
+        $materials=$request->materials;
+        $qtys=$request->qtys;
+        $prices=$request->prices;
+        $total = 0;
+
+        foreach ($qtys as $qty){
+            $total += $qty;
+        }
+        $supOrd->supplierID = $request->supplier;
+        $supOrd->total_qty = $total;
+        $supOrd->save();
+
+        $supOrd->created_at = null;
+        $supOrd->updated_at = null;
+
+        $last_insert_id = $supOrd->id;
+        $ctr=0;
+        foreach ($materials as $material){
+
+
+            $supOrdDet = new SupplierOrderDetails();
+            $supOrdDet->materialID = $material;
+            $supOrdDet->supplierOrderID = $last_insert_id;
+            $supOrdDet->price_each = $prices[$ctr];
+            $supOrdDet->qty = $qtys[$ctr];
+            $supOrdDet->total_price = $prices[$ctr] * $qtys[$ctr];
+
+
+            $supOrdDet->save();
+            $ctr+=1;
+        }
+        return redirect("/supplier");
     }
+
 
     /**
      * Display the specified resource.
