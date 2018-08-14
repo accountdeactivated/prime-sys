@@ -21,6 +21,8 @@ class SuppliersController extends Controller
         $sup = $sup->reverse();
         $mat = Materials::all();
         $supOrder = SupplierOrders::all();
+        $sup = $sup->reverse();
+
 
         foreach($supOrder as $sp){
            $sp['supplierorderdetails'] = $this->getSOsDetailbySOID($sp->id);

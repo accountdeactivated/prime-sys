@@ -103,8 +103,8 @@
                                         <thead>
                                         <tr style="font-size:12px; font-weight:700; ">
                                             <th>Material Name</th>
-                                            <th>Order Qty </th>
                                             <th>Price per piece</th>
+                                            <th>Order Qty </th>
                                             <th><i class="fa fa-gear"></i></th>
                                         </tr>
 
@@ -115,12 +115,13 @@
                                                 <select style="font-size:12px;" name="materials[]" class="form-control orderName">
                                                     <option selected disabled>Choose a Material </option>
                                                     @foreach ($materials as $material)
-                                                        <option value="{{$material->id}}">{{$material->name}}</option>
+                                                        <option value="{{$material->id}}" price="{{$material->price}}">{{$material->name}}</option>
                                                     @endforeach
                                                 </select>
                                             </td>
+                                            <td><input value="" type="number"  name="prices[]"  min="1" step="0.01" style="font-size:12px;" class="form-control orderInventory addablePrice" placeholder="Price Each" readonly></td>
                                             <td><input value="" type="number" name="qtys[]"  min="1" step="0.01" style="font-size:12px;" class="form-control orderInventory addableQty" placeholder="Quantity Ordered"></td>
-                                            <td><input value="" type="number"  name="prices[]"  min="1" step="0.01" style="font-size:12px;" class="form-control orderInventory addablePrice" placeholder="Price Each"></td>
+
                                             <td><i style="font-size:20px; color:#E53935; " class="linea linea-aerrow removeAddOrder" data-icon="&#xe04a;">x</i></td>
                                         </tr>
                                         </tbody>
@@ -263,13 +264,36 @@
         console.log("total "+sum);
 
     });
+    $(document).on('change', '.orderName', function (e) {
+
+        var inputsQtys = document.getElementsByClassName('addableQty');
+        var price = $(this).find('option:selected').attr('price');
+        var sum = 0;
+
+        var td = this;
+        console.log("xd: "+price);
+        $(td).closest('td').next().find('input').val(price);
+        console.log($(td).closest('td').next().find('input').attr('price'));
+
+        /*
+        for(ctr = 0;ctr< inputsQtys.length;ctr++){
+
+            sum+= parseFloat(inputsQtys[ctr].value) * parseFloat(inputsPrices[ctr].value);
+
+        }
+
+        $("#totalPayment").html(sum);
+        console.log("total "+sum);
+        */
+
+    });
     $(document).on('click', '#materialAdd', function() {
         count = count +1;
         $('#orderMaterialList').append(
             '@if(isset($materials))<tr id="orderListNum'+count+'" style="color:black;">'+
-            '<td> <select style="font-size:12px;" name="materials[]" class="form-control orderName"><option selected> Choose a Material</option>@foreach ($materials as $material)<option value="{{$material->id}}">{{$material->name}}</option> @endforeach</select> </td>' +
+            '<td> <select style="font-size:12px;" name="materials[]" class="form-control orderName"><option selected> Choose a Material</option>@foreach ($materials as $material)<option value="{{$material->id}}"  price="{{$material->price}}">{{$material->name}}</option> @endforeach</select> </td>' +
+            '<td><input value="" type="number" min="1" style="font-size:12px;" name="prices[]" step="0.01" class="form-control orderInventory addablePrice" placeholder="Price Each" readonly></td>' +
             '<td><input value="" type="number" min="1" style="font-size:12px;" name="qtys[]" class="form-control orderInventory addableQty" placeholder="Quantity Ordered"></td> ' +
-            '<td><input value="" type="number" min="1" style="font-size:12px;" name="prices[]" step="0.01" class="form-control orderInventory addablePrice" placeholder="Price Each"></td>' +
             '<td><i style="font-size:20px; color:#E53935; " class="linea linea-aerrow removeAddOrder" data-icon="&#xe04a;"></td> ' +
             '</tr>@endif');
     });
