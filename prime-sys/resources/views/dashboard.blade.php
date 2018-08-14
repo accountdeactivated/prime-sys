@@ -17,7 +17,6 @@
          <div class="sidebar" data-color="purple" data-background-color="white" data-image={{asset('img/sidebar-1.jpg')}}>
             <div class="logo">
                <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                  <script>alert('{{Auth::user()->user_access}}')</script>
                Prime Auto Restoration
                </a>
             </div>
