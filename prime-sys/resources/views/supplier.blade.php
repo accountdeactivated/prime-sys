@@ -167,18 +167,18 @@
                            <div class="table-responsive">
                               <table class="table" id="dataTable" width="" height="150">
                                  <thead class="text-primary" style="font-size:20px;">
-                                    <th><span class="fa fa-vcard" role="icon"></span> Name</th>
-                                    <th><span class="fa fa-file-text" role="icon"></span> Address</th>
-                                    <th><span class="fa fa-newspaper-o" role="icon"></span> Contact Person</th>
-                                    <th><span class="fa fa-money" role="icon"></span> Contact Number</th>
+                                    <th><span class="fa fa-vcard" role="icon"></span> ORDER ID</th>
+                                    <th><span class="fa fa-file-text" role="icon"></span> Supplier</th>
+                                    <th><span class="fa fa-file-text" role="icon"></span> Total QTY</th>
+                                    <th><span class="fa fa-newspaper-o" role="icon"></span> Created at</th>
                                  </thead>
                                  <tbody id="suppliers" style="font-size:20px;">
-                                  @foreach($suppliers as $supplier)
+                                  @foreach($suppliersorders as $sup)
                                       <tr>
-                                          <td>{{$supplier->name}}</td>
-                                          <td>{{$supplier->address}}</td>
-                                          <td class="text-center">{{$supplier->contactPerson}}</td>
-                                          <td class="text-center">{{$supplier->contactNumber}}</td>
+                                          <td>PO_{{$sup->id}}</td>
+                                          <td>{{$sup['supplier']['name']}}</td>
+                                          <td>{{$sup->total_qty}}</td>
+                                          <td>{{$sup->created_at}}</td>
                                       </tr>
                                   @endforeach
                                   </tbody>

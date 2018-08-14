@@ -20,8 +20,15 @@ class SuppliersController extends Controller
         $sup = Suppliers::all();
         $sup = $sup->reverse();
         $mat = Materials::all();
+        $supOrder = SupplierOrders::all();
+
+        foreach($supOrder as $sp){
+           $sp['supplierorderdetails'] = $this->getSOsDetailbySOID($sp->id);
+           $sp['supplier'] = $this->getSupplier($sp->supplierID);
+        }
 
         return view('supplier')
+            ->with('suppliersorders', $supOrder)
             ->with('suppliers', $sup)
             ->with('materials', $mat);
     }
@@ -31,6 +38,19 @@ class SuppliersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public static function getSOsDetailbySOID($id){
+        $so = SupplierOrderDetails::all();
+
+        $so = $so->filter(function ($so) use ($id) {
+            return $so->supplierOrderID == $id;
+        });
+
+        return $so;
+    }
+    public static function getSupplier($id){
+        $sup = Suppliers::where('id',$id)->first();
+        return $sup;
+    }
     public function create(Request $request)
     {
         //create a supplier and supplier order
