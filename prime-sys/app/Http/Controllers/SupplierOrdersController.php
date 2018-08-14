@@ -41,9 +41,20 @@ class SupplierOrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function ajaxGetPOdetails(Request $request)
     {
-        //
+        $sup = SupplierOrders::find($request->po_number);
+        $sup['orderdetails'] = $this->getSOsDetailbySOID($sup->id);
+
+        foreach ($sup['orderdetails'] as $det){
+            $mat = self::getMaterialBySOID($det['materialID']);
+            $det['materialName'] = $mat['name'];
+        }
+
+        return response()->json([
+            'supplierorder'=>$sup,
+            'orderdetails'=> $sup['orderdetails']
+        ]);
     }
 
     /**
@@ -52,6 +63,9 @@ class SupplierOrdersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public static function getMaterialBySOID($id){
+        return Materials::find($id);
+    }
     public static function getSOsDetailbySOID($id){
         $so = SupplierOrderDetails::all();
 
@@ -73,10 +87,14 @@ class SupplierOrdersController extends Controller
         $qtys=$request->qtys;
         $prices=$request->prices;
         $total = 0;
+        $sum = 0;
+        $c = 0;
 
         foreach ($qtys as $qty){
             $total += $qty;
+            $sum += $prices[$c] * $qty;
         }
+
         $supOrd->supplierID = $request->supplier;
         $supOrd->total_qty = $total;
         $supOrd->save();
@@ -87,22 +105,19 @@ class SupplierOrdersController extends Controller
         $last_insert_id = $supOrd->id;
         $ctr=0;
         foreach ($materials as $material){
-
-
             $supOrdDet = new SupplierOrderDetails();
             $supOrdDet->materialID = $material;
             $supOrdDet->supplierOrderID = $last_insert_id;
             $supOrdDet->price_each = $prices[$ctr];
             $supOrdDet->qty = $qtys[$ctr];
+            $sum += $supOrdDet->price_each;
             $supOrdDet->total_price = $prices[$ctr] * $qtys[$ctr];
-
-
             $supOrdDet->save();
             $ctr+=1;
         }
-        return redirect("/supplier");
-    }
 
+        return redirect("/supplierOrder");
+    }
 
     /**
      * Display the specified resource.

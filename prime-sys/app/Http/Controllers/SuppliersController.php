@@ -18,10 +18,10 @@ class SuppliersController extends Controller
     public function index()
     {
         $sup = Suppliers::all();
-        $sup = $sup->reverse();
         $mat = Materials::all();
         $supOrder = SupplierOrders::all();
         $sup = $sup->reverse();
+        $supOrder = $supOrder->reverse();
 
 
         foreach($supOrder as $sp){
@@ -61,12 +61,17 @@ class SuppliersController extends Controller
         $qtys=$request->qtys;
         $prices=$request->prices;
         $total = 0;
+        $sum = 0;
 
         foreach ($qtys as $qty){
             $total += $qty;
         }
+        foreach ($prices as $price){
+            $sum += $price;
+        }
         $supOrd->supplierID = $request->supplier;
         $supOrd->total_qty = $total;
+        $supOrd->total_price = $sum;
         $supOrd->save();
 
         $supOrd->created_at = null;
@@ -88,7 +93,7 @@ class SuppliersController extends Controller
             $supOrdDet->save();
             $ctr+=1;
         }
-        return redirect("/supplier");
+        return redirect("/supplierOrder");
     }
 
     /**

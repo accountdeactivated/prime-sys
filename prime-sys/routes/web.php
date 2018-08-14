@@ -46,6 +46,7 @@ Route::post('logd', 'LoginController@store')->name('logd');
 
 Route::resource('logout', 'LogoutController');
 Route::post('/supplier/create', 'SuppliersController@create')->name('supplier.create');
+Route::post('getPOdetails','SupplierOrdersController@ajaxGetPOdetails');
 
 //Live AJAX Update
 //Done By: PrivateAirJET
