@@ -125,7 +125,7 @@
                                           <th><i class="fa fa-gear"></i></th>
                                       </tr>
                                       </thead>
-                                      <tbody id="dispOrderMaterialList">
+                                      <tbody class="dispOrderMaterialList">
                                       <tr>
                                           <td><input type="text" value="" readonly></td>
                                           <td><input type="text" value="" readonly></td>
@@ -303,7 +303,7 @@
             data: formData,
             success: function(data){
                 console.log('PO Data:',data);
-                orderdetails = data.orderdetails;
+                orderdetails = data.supplierorder.orderdetails;
                 supplierord = data.supplierorder;
 
                 $('#dispPOitem').html("PO_"+po);
@@ -311,17 +311,21 @@
                 $('#dispTotalPayment').html(supplierord.total_price);
 
                 console.log("bobo: "+orderdetails.length);
-                $('#dispOrderMaterialList').empty();
+                $('.dispOrderMaterialList').empty();
 
-                for(i = 0; i<orderdetails.length;i++){
-                    $('#dispOrderMaterialList').append(
+
+                Object.keys( orderdetails ).forEach(function( key ) {
+
+                    $('.dispOrderMaterialList').append(
                         '<tr>' +
-                        '<td>'+'<input type="text" class="form-control" value="'+orderdetails[i].materialName+'" readonly>'+'</td>' +
-                        '<td>'+'<input type="text" class="form-control" value="'+orderdetails[i].price_each+'" readonly>'+'</td>' +
-                        '<td>'+'<input type="text" class="form-control" value="'+orderdetails[i].qty+'" readonly>'+'</td>'+
+                        '<td>'+'<input type="text" class="form-control" value="'+orderdetails[key].materialName+'" readonly>'+'</td>' +
+                        '<td>'+'<input type="text" class="form-control" value="'+orderdetails[key].price_each+'" readonly>'+'</td>' +
+                        '<td>'+'<input type="text" class="form-control" value="'+orderdetails[key].qty+'" readonly>'+'</td>'+
                         '</tr>'
                     );
-                }
+                });
+
+
             },
             error: function (data) {
                 console.log('Data Error:', data);

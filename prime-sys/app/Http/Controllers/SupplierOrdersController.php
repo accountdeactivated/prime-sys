@@ -21,7 +21,8 @@ class SupplierOrdersController extends Controller
         $sup = $sup->reverse();
         $mat = Materials::all();
         $supOrder = SupplierOrders::all();
-        $sup = $sup->reverse();
+        $supOrder = $supOrder->reverse();
+
 
 
         foreach($supOrder as $sp){
@@ -97,6 +98,7 @@ class SupplierOrdersController extends Controller
 
         $supOrd->supplierID = $request->supplier;
         $supOrd->total_qty = $total;
+        $supOrd->total_price = $sum;
         $supOrd->save();
 
         $supOrd->created_at = null;
