@@ -17,6 +17,7 @@
          <div class="sidebar" data-color="purple" data-background-color="white" data-image={{asset('img/sidebar-1.jpg')}}>
             <div class="logo">
                <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+                  <script>alert('{{Auth::user()->user_access}}')</script>
                Prime Auto Restoration
                </a>
             </div>
@@ -28,7 +29,12 @@
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                <div class="container-fluid">
                   <div class="navbar-wrapper">
-                     <a class="navbar-brand" href="#pablo">Welcome General Manager!</a>
+                     <a class="navbar-brand" href="#pablo">Welcome
+                        @if(Auth::user()->user_access==1) Secretary
+                        @elseif(Auth::user()->user_access==2) Manager
+                        @else Owner
+                        @endif
+                        !</a>
                   </div>
                   <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="sr-only">Toggle navigation</span>

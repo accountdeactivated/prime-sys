@@ -31,12 +31,17 @@
                         <br>
                         <div class="card-body">
                            <br>
+                           @if(Session::has('failed'))
+                              <script>alert('invalid login!')</script>
+                           @endif
                            <h2 class="card-title">Prime Auto</h2>
-                           <div class="form-group">
-                              <input name="userName" type="text" class="form-control" autocomplete="off" placeholder="Username" required/> <br><br>
-                              <input name="password" type="password" class="form-control" placeholder="Passsword" required/> <br><br>
-                              <input class="btn btn-primary btn-block" type=submit name="loginButton" value="Enter">
-                           </div>
+                           {!! Form::open(array('route'=>'logd', 'id'=>'loginform'))!!}
+                              <div class="form-group">
+                                 <input name="username" type="text" class="form-control" autocomplete="off" placeholder="Username" required/> <br><br>
+                                 <input name="password" type="password" class="form-control" placeholder="Passsword" required/> <br><br>
+                                 <input class="btn btn-primary btn-block" type=submit name="loginButton" value="Enter">
+                              </div>
+                           {!! Form::close() !!}
                         </div>
                      </div>
                   </div>

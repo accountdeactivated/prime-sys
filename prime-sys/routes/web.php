@@ -41,6 +41,10 @@ Route::resource('administrator', 'AdministratorsController');
 Route::resource('dashboard', 'DashboardsController');
 
 //Done By: nandarionndr1
+Route::resource('/', 'IndexController');
+Route::post('logd', 'LoginController@store')->name('logd');
+
+Route::resource('logout', 'LogoutController');
 Route::post('/supplier/create', 'SuppliersController@create')->name('supplier.create');
 
 //Live AJAX Update

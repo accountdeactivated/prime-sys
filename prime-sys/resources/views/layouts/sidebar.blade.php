@@ -47,10 +47,10 @@
                         <p>Add Users</p>
                      </a>
                   </li>
-                  <li class="nav-item {{{ (Request::is('restock') ? 'active' : '') }}}">
-                     <a class="nav-link" href="./restockInventory_Controller">
-                        <i class="material-icons">file_copy</i>
-                        <p>Restock Inventory</p>
+                  <li class="nav-item {{{ (Request::is('logout') ? 'active' : '') }}}">
+                     <a class="nav-link" href="./logout">
+                        <i class="material-icons">exit_to_app</i>
+                        <p>Logout</p>
                      </a>
                   </li>
                </ul>
