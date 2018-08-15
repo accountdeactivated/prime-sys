@@ -32,41 +32,43 @@
         <!--modal_starts_hre
         commented by: PrivateAirJET
         -->
-        <div id="addNewServiceModal" class="modal" tabindex="-1" role="dialog">
+        <div id="addNewRepairOrderModal" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" style="color:black;">Add New Service</h5>
+                    <h5 class="modal-title" style="color:black;">Add New Repair Order</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body" style="color:black;">
 
-                    <!--service_name-->
-                    <label for="serviceName" style="color:black;">Service Name</label>
-                    <input type="email" class="form-control" id="serviceName" placeholder="Enter the service name">
-                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the name of the service. <b style="color:#E53935;">*Required</b></span>
+                    <!--client_name-->
+                    <label for="clientName" style="color:black;">Client Name</label>
+                    <input type="email" class="form-control" id="clientName" placeholder="Enter the client name">
+                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the name of the client. <b style="color:#E53935;">*Required</b></span>
                     <br>
-                    <!--service_type-->
-                    <label for="serviceType" style="margin-top:20px; color:black;">Service Type</label>
-                    <select class="form-control" data-style="btn btn-link" id="serviceType">
-                        <option selected disabled>Choose a service type</option>
-                        <option>Repair</option>
-                        <option>Painting</option>
-                        <option>Washing</option>
+                    <!--car_maker-->
+                    <label for="carManufacturer" style="margin-top:20px; color:black;">Car Manufacturer</label>
+                    <select class="form-control" data-style="btn btn-link" id="carManufacturer">
+                     
                     </select>
-                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the type of the service. <b style="color:#E53935;">*Required</b></span>
+                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the car manufacturer from the order. <b style="color:#E53935;">*Required</b></span>
                     <br>
-                    <!--service_description-->
-                    <label for="serviceDescription" style="margin-top:20px; color:black;">Service Description</label>
-                    <textarea class="form-control" id="serviceDescription" rows="2"></textarea>
-                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the brief description of the service. <b style="color:#E53935;">*Required</b></span>
+                    <!--car_model-->
+                    <label for="carModel" style="margin-top:20px; color:black;">Car Model</label>
+                    <textarea class="form-control" id="carModel" rows="2"></textarea>
+                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the model of the car.<b style="color:#E53935;">*Required</b></span>
                     <br>
-                    <!--service_cost-->
-                    <label for="serviceCost" style="margin-top:20px; color:black;">Service Cost</label>
-                    <input type="number" class="form-control" id="serviceCost" placeholder="Enter the service cost.">
-                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the cost of the service. <b style="color:#E53935;">*Required</b></span>
+
+
+
+
+
+                    <!--expected_deadline-->
+                    <label for="expectedDeadline" style="margin-top:20px; color:black;">Expected Deadline</label>
+                    <input type="date" class="form-control" id="expectedDeadline">
+                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the repair order/s expected deadline. <b style="color:#E53935;">*Required</b></span>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -132,27 +134,28 @@
                   <div class="col-md-12">
                      <div class="card">
                         <div class="card-header card-header-primary">
-                           <h4 class="card-title ">Services
-                              <button id="addNewServiceButton" data-toggle="modal" data-target="#addNewServiceModal" type=" button" rel="tooltip" title="Add New Service" class="btn btn-primary btn-fab btn-fab-mini btn-round">
+                           <h4 class="card-title ">Repair Order
+                              <button id="addRepairOrder" data-toggle="modal" data-target="#addNewRepairOrderModal" type=" button" rel="tooltip" title="Add New Repair Order" class="btn btn-primary btn-fab btn-fab-mini btn-round">
                               <i class="material-icons">add_circle</i>
                               </button>
                            </h4>
-                           <p class="card-category" style="color:white;"> Here is a list of all the services offered</p>
+                           <p class="card-category" style="color:white;"> Here is a list of all the repair orders of the company.</p>
                         </div>
                         
                         <div class="card-body">
                            <div class="table-responsive">
                               <table class="table" id="dataTable" width="" height="150">
                                  <thead class="text-primary" style="font-size:20px;">
-                                    <th>Service ID</th>
-                                    <th><span class="fa fa-vcard" role="icon"></span> Name</th>
-                                    <th><span class="fa fa-file-text" role="icon"></span> Type</th>
-                                    <th><span class="fa fa-newspaper-o" role="icon"></span> Description</th>
-                                    <th><span class="fa fa-money" role="icon"></span> Cost (PHP)</th>
+                                    <th>Order ID</th>
+                                    <th><span class="fa fa-vcard" role="icon"></span> Order Date</th>
+                                    <th><span class="fa fa-file-text" role="icon"></span> Order Deadline</th>
+                                    <th><span class="fa fa-newspaper-o" role="icon"></span> Order Status</th>
+                                    <th><span class="fa fa-money" role="icon"></span>Payment Status</th>
+                                    <th><span class="fa fa-money" role="icon"></span>Total Amount</th>
                                     <th> <span class="fa fa-gears" role="icon"></span> Actions</th>
                                  </thead>
                                  <tbody id="servicesList" style="font-size:20px;">
-                                    @if(isset($services))
+                                    {{-- @if(isset($services))
                                         @php($count=0)
                                         @foreach($services as $service)
                                         @php($count=$count+1)
@@ -168,7 +171,7 @@
                                             </td>
                                         </tr>
                                         @endforeach
-                                    @endif
+                                    @endif --}}
                                  </tbody>
                               </table>
                            </div>
