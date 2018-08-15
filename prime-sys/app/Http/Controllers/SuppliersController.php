@@ -76,7 +76,7 @@ class SuppliersController extends Controller
         $driver->created_at = null;
         $driver->updated_at = null;
         $driver->save();
-        //Session::flash('success','Successfully added a fucking supplier!');
+        Session::flash('success','Successfully added a fucking supplier!');
         return redirect("/supplier");
     }
 

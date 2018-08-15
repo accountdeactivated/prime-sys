@@ -27,8 +27,11 @@
               @include('layouts.sidebar')
           </div>
       </div>
+          @if(Session::has('success'))
+              <script>alert('successfully added supplier')</script>
+          @endif
 
-        <!--modal_starts_here 
+      <!--modal_starts_here
         commented by: PrivateAirJET
         -->
         <div id="addNewSupplierModal" class="modal" tabindex="-1" role="dialog">

@@ -133,7 +133,7 @@
                           </div>
                           <p class="card-category">
                             <a href="./Main_Controller">
-                              Revenue Report
+                              Procurement Report
                             </a>
                         </div>
                         <div class="card-footer">
@@ -154,7 +154,6 @@
                             Inventory Report
                             </a>
                           </p>
-
                         </div>
                         <div class="card-footer">
                           <div class="stats">
