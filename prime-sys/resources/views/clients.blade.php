@@ -31,11 +31,12 @@
     <!--modal_starts_here
     commented by: PrivateAirJET
     -->
-    <div id="addNewSupplierModal" class="modal" tabindex="-1" role="dialog">
+
+    <div id="addClientModal" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" style="color:black;">Add New Supplier</h5>
+                    <h5 class="modal-title" style="color:black;">Add New Client</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -43,37 +44,65 @@
 
                 {!! Form::open(array('route'=>'clients.store'))!!}
                 <div class="modal-body" style="color:black;">
-                    <label for="serviceName" style="color:black;">Material Name</label>
-                    <input type="text" class="form-control" id="materialN" name="matname" placeholder="Enter Material Name" required>
+                    <label for="serviceName" style="color:black;">Client Name</label>
+                    <input type="text" class="form-control" id="materialN" name="clientname" placeholder="" required>
                     <br>
 
-                    <label for="serviceName" style="color:black;">Opening Stock</label>
-                    <input type="number" class="form-control" id="curQty" name="matcurrent_qty" placeholder="Enter amount" min="0" required>
+                    <label for="serviceName" style="color:black;">Email</label>
+                    <input type="email" class="form-control" id="curQty" name="clientemail" placeholder="" min="0" required>
                     <br>
 
-                    <label for="serviceName" style="color:black;">Price</label>
-                    <input type="number" class="form-control" id="price" name="price" placeholder="Enter Price" min="0" required>
+                    <label for="serviceName" style="color:black;">Contact</label>
+                    <input type="text" class="form-control" id="price" name="clientcontact" placeholder="" min="0" required>
                     <br>
 
+                    <label for="serviceName" style="color:black;">Address</label>
+                    <input type="text" class="form-control" id="price" name="clientaddress" placeholder="" min="0" required>
+                    <br>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-danger btn-md btn-block text-uppercase waves-effect waves-light" id="submitSupplier" style="background-color: #4c87ed; box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);" type="submit">Submit</button>
-                    <button style="display: none" class="btn btn-danger btn-md btn-block text-uppercase waves-effect waves-light" id="submitSupplierEntry" style="background-color: #4c87ed; box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);" type="submit">Submit</button>
+                    <button class="btn btn-danger btn-md btn-block text-uppercase waves-effect waves-light" id="submitSupplierEntry" style="background-color: #4c87ed; box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);" type="submit">Submit</button>
                 </div>
                 {!!Form::close()!!}
             </div>
         </div>
     </div>
-    <!--modal_ends_here
-     commented by: PrivateAirJET
-     -->
-    <div id="editSupplierModal" class="modal" tabindex="-1" role="dialog">
 
+    <div id="editClientModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="color:black;">Add New Client</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                {!! Form::open(['route'=>['upd'],'method'=>'POST'])!!}
+                <div class="modal-body" style="color:black;">
+                    <label for="serviceName" style="color:black;">Client Name</label>
+                    <input type="text" class="form-control" id="editname" name="name" placeholder="" required>
+                    <br>
+
+                    <label for="serviceName" style="color:black;">Email</label>
+                    <input type="email" class="form-control" id="editemail" name="email" placeholder="" min="0" required>
+                    <br>
+
+                    <label for="serviceName" style="color:black;">Contact</label>
+                    <input type="text" class="form-control" id="editcontact" name="contact" placeholder="" min="0" required>
+                    <br>
+                    <input type="hidden" value="" id="cid" name="id">
+                    <label for="serviceName" style="color:black;">Address</label>
+                    <input type="text" class="form-control" id="editaddress" name="address" placeholder="" min="0" required>
+                    <br>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-md btn-block text-uppercase waves-effect waves-light" id="submitSupplierEntry" style="background-color: #4c87ed; box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);" type="submit">Submit</button>
+                </div>
+                {!!Form::close()!!}
+            </div>
+        </div>
     </div>
-    <!--modal_ends_here
-    commented by: PrivateAirJET
-    -->
-
     <div class="main-panel">
         <div class="content">
             <div class="container-fluid">
@@ -81,8 +110,8 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header card-header-primary">
-                                <h4 class="card-title ">Materials
-                                    <button id="addNewServiceButton" data-toggle="modal" data-target="#addNewSupplierModal" type=" button" rel="tooltip" title="Add New Service" class="btn btn-primary btn-fab btn-fab-mini btn-round">
+                                <h4 class="card-title ">Client List
+                                    <button id="addNewServiceButton" data-toggle="modal" data-target="#addClientModal" type=" button" rel="tooltip" title="Add New Client" class="btn btn-primary btn-fab btn-fab-mini btn-round">
                                         <i class="material-icons">add_circle</i>
                                     </button>
                                 </h4>
@@ -109,6 +138,20 @@
                                                 <td>{{$client->email}}</td>
                                                 <td>{{$client->contact}}</td>
                                                 <td>{{$client->address}}</td>
+
+                                                <td>
+
+                                                    {!! Form::open(['route'=>['clients.destroy',$client->id],'method'=>'DELETE','enctype'=>'multipart/form-data','class'=>'removeclient','style'=>'display:inline;margin-left:5px']) !!}
+                                                            <i class="material-icons" style="display:inline;margin-left:5px" >delete</i>
+                                                    {!! Form::close() !!}
+                                                            <i class="material-icons update" data-toggle="modal" style="display:inline;margin-left:5px" data-target="#editClientModal"
+                                                               cid="{{$client->id}}"
+                                                               name="{{$client->name}}"
+                                                               email="{{$client->email}}"
+                                                               contact="{{$client->contact}}"
+                                                               address="{{$client->address}}">edit</i>
+
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -139,6 +182,23 @@
 
     var count = 1;
     var count2 = 1;
+    $(document).on('click', '.removeclient', function() {
+        var verify = confirm("delete client");
+        if(verify==true){
+            $(this).submit();
+            $(this).closest('tr').remove();
+        }
+        return false;
+    });
+    $(document).on('click', '.update', function() {
+        $('#editname').val($(this).attr('name'));
+        $('#editemail').val($(this).attr('email'));
+        $('#editcontact').val($(this).attr('contact'));
+        $('#editaddress').val($(this).attr('address'));
+        $('#cid').val($(this).attr('cid'));
+
+        return false;
+    });
     $(document).on('change', '.addablePrice', function (e) {
 
         var inputsQtys = document.getElementsByClassName('addableQty');

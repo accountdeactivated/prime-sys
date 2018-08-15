@@ -45,6 +45,7 @@ Route::resource('materials', "MaterialsController");
 //Done By: nandarionndr1
 Route::resource('/', 'IndexController');
 Route::post('logd', 'LoginController@store')->name('logd');
+Route::post('upd', 'ClientsController@create')->name('upd');
 
 Route::resource('repairOrder', 'RepairOrdersController');
 Route::resource('reports', 'ReportsController');

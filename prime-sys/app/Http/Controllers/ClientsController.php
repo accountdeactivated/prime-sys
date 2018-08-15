@@ -25,9 +25,15 @@ class ClientsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $c = Clients::find($request->id);
+        $c->name = $request->name;
+        $c->email = $request->email;
+        $c->contact = $request->contact;
+        $c->address = $request->address;
+        $c->save();
+        return redirect('/clients');
     }
 
     /**
@@ -38,7 +44,13 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
-        $cl = new Clients();
+        $c = new Clients();
+        $c->name = $request->clientname;
+        $c->email = $request->clientemail;
+        $c->contact = $request->clientcontact;
+        $c->address = $request->clientaddress;
+        $c->save();
+        return redirect('/clients');
     }
 
     /**
@@ -70,7 +82,7 @@ class ClientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
     }
@@ -83,6 +95,9 @@ class ClientsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Clients::find($id);
+        $product->delete();
+
+        return redirect("/clients");
     }
 }
