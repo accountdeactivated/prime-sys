@@ -46,7 +46,9 @@
                                     @endforeach
                                 @endif
                             </select>
-                            <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Choose one supplier among the list to add an order. <b style="color:#E53935;">*Required</b></span>
+                            <br>
+                            <label for="supplierList" class="control-label" style="color:black; font-family:Helvetica,Arial,sans-serif;"><b>Posting Date:</b></label>
+                            <input type="date" name="posted_date" id="datePicker" class="form-control">
                             <br>
                             <div class="row" style="background-color:#F5F5F5; padding:3px;margin-top:10px;">
 
@@ -205,6 +207,25 @@
     var count = 1;
     var count2 = 1;
 
+    window.onload = function(e){
+
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if(dd<10) {
+            dd = '0'+dd
+        }
+
+        if(mm<10) {
+            mm = '0'+mm
+        }
+        today = yyyy + "-"+mm+"-"+dd;
+        console.log(today);
+        document.getElementById("datePicker").value = today;
+    }
+
     $(document).on('click', '#submitSupplier', function() {
         var supplierN = document.getElementById('serviceN').value;
         var supplierA = document.getElementById('serviceA').value;
@@ -242,45 +263,6 @@
         $(td).closest('td').next().find('input').val(price);
         console.log($(td).closest('td').next().find('input').attr('price'));
 
-        /*
-        for(ctr = 0;ctr< inputsQtys.length;ctr++){
-
-            sum+= parseFloat(inputsQtys[ctr].value) * parseFloat(inputsPrices[ctr].value);
-
-        }
-
-         <h4  style="font-size:14px; color:black; font-family:Helvetica,Arial,sans-serif;">Purchase Order<b id="dispPOitem">P</b></h4>
-         <br>
-         <div class="row" style="background-color:#F5F5F5; padding:3px;margin-top:10px;">
-         <h4  style="font-size:14px; color:black; font-family:Helvetica,Arial,sans-serif;"><b>Supplier Material Order/s</b></h4>
-         <div class="table-responsive" style="margin-top:10px;">
-         <table id="materialOrderTable"class="table color-bordered-table info-bordered-table" style="box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); font-family:Helvetica,Arial,sans-serif;">
-         <thead>
-         <tr style="font-size:12px; font-weight:700; ">
-         <th>Material Name</th>
-         <th>Price per piece</th>
-         <th>Order Qty </th>
-         <th><i class="fa fa-gear"></i></th>
-         </tr>
-         </thead>
-         <tbody id="dispOrderMaterialList">
-         <tr>
-         <td><input type="text" value="" readonly></td>
-         <td><input type="text" value="" readonly></td>
-         <td><input type="text" value="" readonly></td>
-         </tr>
-         </tbody>
-         </table>
-         </div>
-         </div>
-         </br>
-         <label for="client" class="control-label" style="color:black; margin-top:10px; font-family:Helvetica,Arial,sans-serif;"><b>Total Payment Amount: </b><p id="dispTotalQty"></p></label>
-         <label for="client" class="control-label" style="color:black; margin-top:10px; font-family:Helvetica,Arial,sans-serif;"><b>Total Payment Amount: </b><p id="dispTotalPayment"></p></label>
-         </div>
-
-        $("#totalPayment").html(sum);
-        console.log("total "+sum);
-        */
 
     });
 

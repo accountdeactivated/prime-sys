@@ -8,7 +8,7 @@ use App\SupplierOrders;
 use App\Suppliers;
 use Illuminate\Http\Request;
 
-class SuppliersController extends Controller
+class RepairOrdersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,21 +18,23 @@ class SuppliersController extends Controller
     public function index()
     {
         $sup = Suppliers::all();
+        $sup = $sup->reverse();
         $mat = Materials::all();
         $supOrder = SupplierOrders::all();
-        $sup = $sup->reverse();
         $supOrder = $supOrder->reverse();
 
 
+
         foreach($supOrder as $sp){
-           $sp['supplierorderdetails'] = $this->getSOsDetailbySOID($sp->id);
-           $sp['supplier'] = $this->getSupplier($sp->supplierID);
+            $sp['supplierorderdetails'] = $this->getSOsDetailbySOID($sp->id);
+            $sp['supplier'] = $this->getSupplier($sp->supplierID);
         }
 
-        return view('supplier')
+        return view('supplierorder')
             ->with('suppliersorders', $supOrder)
             ->with('suppliers', $sup)
             ->with('materials', $mat);
+
     }
 
     /**
@@ -40,6 +42,31 @@ class SuppliersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function ajaxGetPOdetails(Request $request)
+    {
+        $sup = SupplierOrders::find($request->po_number);
+        $sup['orderdetails'] = $this->getSOsDetailbySOID($sup->id);
+
+        foreach ($sup['orderdetails'] as $det){
+            $mat = self::getMaterialBySOID($det['materialID']);
+            $det['materialName'] = $mat['name'];
+        }
+
+        return response()->json([
+            'supplierorder'=>$sup,
+            'orderdetails'=> $sup['orderdetails']
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public static function getMaterialBySOID($id){
+        return Materials::find($id);
+    }
     public static function getSOsDetailbySOID($id){
         $so = SupplierOrderDetails::all();
 
@@ -53,7 +80,7 @@ class SuppliersController extends Controller
         $sup = Suppliers::where('id',$id)->first();
         return $sup;
     }
-    public function create(Request $request)
+    public function store(Request $request)
     {
         //create a supplier and supplier order
         $supOrd = new SupplierOrders();
@@ -62,16 +89,15 @@ class SuppliersController extends Controller
         $prices=$request->prices;
         $total = 0;
         $sum = 0;
+        $c = 0;
 
         foreach ($qtys as $qty){
             $total += $qty;
+            $sum += $prices[$c] * $qty;
         }
-        foreach ($prices as $price){
-            $sum += $price;
-        }
+
         $supOrd->supplierID = $request->supplier;
         $supOrd->total_qty = $total;
-        $supOrd->posted_date = $request->posted_date;
         $supOrd->total_price = $sum;
         $supOrd->save();
 
@@ -81,44 +107,18 @@ class SuppliersController extends Controller
         $last_insert_id = $supOrd->id;
         $ctr=0;
         foreach ($materials as $material){
-
-
             $supOrdDet = new SupplierOrderDetails();
             $supOrdDet->materialID = $material;
             $supOrdDet->supplierOrderID = $last_insert_id;
             $supOrdDet->price_each = $prices[$ctr];
             $supOrdDet->qty = $qtys[$ctr];
+            $sum += $supOrdDet->price_each;
             $supOrdDet->total_price = $prices[$ctr] * $qtys[$ctr];
-
-
             $supOrdDet->save();
             $ctr+=1;
         }
+
         return redirect("/supplierOrder");
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $fields = $request->all();
-        $driver = new Suppliers();
-
-
-        $driver->name = $fields['name'];
-        $driver->address = $fields['address'];
-        $driver->contactPerson = $fields['contactPerson'];
-        $driver->ContactNumber = $fields['contactNumber'];
-
-        $driver->created_at = null;
-        $driver->updated_at = null;
-        $driver->save();
-        //Session::flash('success','Successfully added a fucking supplier!');
-        return redirect("/supplier");
     }
 
     /**
