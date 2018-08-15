@@ -26,7 +26,6 @@
 
 //Implementation of Resource Routes
 //Done By: PrivateAirJET
-Route::resource('material', 'MaterialsController');
 Route::resource('service', 'ServicesController');
 Route::resource('car', 'CarsController');
 Route::resource('carmaker', 'CarMakersController');
@@ -39,6 +38,9 @@ Route::resource('client', 'ClientsController');
 Route::resource('account', 'AccountsController');
 Route::resource('administrator', 'AdministratorsController');
 Route::resource('dashboard', 'DashboardsController');
+
+//jeremy dog
+Route::resource('materials', "MaterialsController");
 
 //Done By: nandarionndr1
 Route::resource('/', 'IndexController');
