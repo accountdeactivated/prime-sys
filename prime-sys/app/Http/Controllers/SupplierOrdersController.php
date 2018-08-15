@@ -94,6 +94,7 @@ class SupplierOrdersController extends Controller
         $supOrd->total_qty = $total;
         $supOrd->total_price = $sum;
         $supOrd->posted_date = $request->posted_date;
+
         $supOrd->save();
 
         $supOrd->created_at = null;
@@ -101,7 +102,8 @@ class SupplierOrdersController extends Controller
 
         $last_insert_id = $supOrd->id;
         $ctr=0;
-        foreach ($materials as $material){
+
+        foreach($materials as $material){
             $supOrdDet = new SupplierOrderDetails();
             $supOrdDet->materialID = $material;
             $supOrdDet->supplierOrderID = $last_insert_id;
