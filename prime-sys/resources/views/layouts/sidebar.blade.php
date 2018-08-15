@@ -67,6 +67,13 @@
         </a>
     </li>
     @endif
+
+    <li class="nav-item {{{ (Request::is('clients') ? 'active' : '') }}}">
+        <a class="nav-link" href="./clients">
+            <i class="material-icons">group</i>
+            <p>Clients</p>
+        </a>
+    </li>
     <!--
 
 

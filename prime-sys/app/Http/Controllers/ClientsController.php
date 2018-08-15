@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Clients;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Client;
 
 class ClientsController extends Controller
 {
@@ -13,7 +15,9 @@ class ClientsController extends Controller
      */
     public function index()
     {
-        //
+        $cl = Clients::all();
+        return view('clients')
+            ->with("clients",$cl);
     }
 
     /**
@@ -34,7 +38,7 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cl = new Clients();
     }
 
     /**

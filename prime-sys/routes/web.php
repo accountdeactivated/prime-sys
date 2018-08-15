@@ -34,7 +34,7 @@ Route::resource('orderDetail', 'OrderDetailsController');
 Route::resource('supplier', 'SuppliersController');
 Route::resource('supplierOrder', 'SupplierOrdersController');
 Route::resource('supplierDetail', 'SupplierOrderDetailController');
-Route::resource('client', 'ClientsController');
+Route::resource('clients', 'ClientsController');
 Route::resource('account', 'AccountsController');
 Route::resource('administrator', 'AdministratorsController');
 Route::resource('dashboard', 'DashboardsController');
