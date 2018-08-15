@@ -44,20 +44,17 @@
                 {!! Form::open(array('route'=>'supplier.store'))!!}
                 <div class="modal-body" style="color:black;">
                     <label for="serviceName" style="color:black;">Material Name</label>
-                    <input type="text" class="form-control" id="serviceN" name="name" placeholder="Enter Material Name" required>
+                    <input type="text" class="form-control" id="materialN" name="materialN" placeholder="Enter Material Name" required>
                     <br>
 
-                    <label for="serviceName" style="color:black;">Address</label>
-                    <input type="text" class="form-control" id="serviceA" name="address" placeholder="Enter address" required>
+                    <label for="serviceName" style="color:black;">Current Quantity</label>
+                    <input type="text" class="form-control" id="curQty" name="crQty" placeholder="Enter Quantity" required>
                     <br>
 
-                    <label for="serviceName" style="color:black;">Contact Person</label>
-                    <input type="text" class="form-control" id="serviceCp" name="contactPerson" placeholder="Enter contact person" required>
+                    <label for="serviceName" style="color:black;">Price</label>
+                    <input type="text" class="form-control" id="price" name="price" placeholder="Enter Price" required>
                     <br>
 
-                    <label for="serviceName" style="color:black;">Contact Number</label>
-                    <input type="number" class="form-control" id="serviceCn" name="contactNumber" placeholder="Enter contact #" required>
-                    <br>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-danger btn-md btn-block text-uppercase waves-effect waves-light" id="submitSupplier" style="background-color: #4c87ed; box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);" type="submit">Submit</button>
