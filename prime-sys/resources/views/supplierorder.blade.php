@@ -50,15 +50,10 @@
                             <label for="supplierList" class="control-label" style="color:black; font-family:Helvetica,Arial,sans-serif;"><b>Posting Date:</b></label>
                             <input type="date" name="posted_date" id="datePicker" class="form-control" required>
                             <br>
-                            <div class="row" style="background-color:#F5F5F5; padding:3px;margin-top:10px;">
-
-                                <h4  style="font-size:14px; color:black; font-family:Helvetica,Arial,sans-serif;"><b>Supplier Material Order/s</b></h4>
-                                <br>
-                                <label for="order" class="control-label">
-                                    <button id="materialAdd" class="btn btn-primary" style="border-radius: 80px" type="button"><span class="btn-label"><i class="fa fa-plus-square"></i></span> Add Material <div class="ripple-container"></div></button>
-                                </label>
+                                <label for="supplierList" class="control-label pull-left" style="color:black; font-family:Helvetica,Arial,sans-serif;"><b>Supplier Materials Order/:</b></label>
+                                <button id="materialAdd" class="btn btn-primary btn-small pull-right" style="border-radius: 80px" type="button"><span class="btn-label">Add Material <div class="ripple-container"></div></button>
                                 <div class="table-responsive" style="margin-top:10px;">
-                                    <table id="materialOrderTable"class="table color-bordered-table info-bordered-table" style="box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); font-family:Helvetica,Arial,sans-serif;">
+                                    <table id="materialOrderTable"class="table info-bordered-table" style="font-family:Helvetica,Arial,sans-serif;">
                                         <thead>
                                         <tr style="font-size:12px; font-weight:700; ">
                                             <th>Material Name</th>
@@ -78,7 +73,7 @@
                                                     @endforeach
                                                 </select>
                                             </td>
-                                            <td><input value="" type="number"  name="prices[]"  min="1" step="0.01" style="font-size:12px;" class="form-control orderInventory addablePrice" placeholder="Price Each" readonly></td>
+                                            <td><input value="" type="number"  name="prices[]"  min="1" step="0.01" style="font-size:12px;" class="form-control orderInventory addablePrice" placeholder="Price Each"></td>
                                             <td><input value="" type="number" name="qtys[]"  min="1" step="0.01" style="font-size:12px;" class="form-control orderInventory addableQty" placeholder="Quantity Ordered"></td>
 
                                             <td><i style="font-size:20px; color:#E53935; " class="linea linea-aerrow removeAddOrder" data-icon="&#xe04a;">x</i></td>
@@ -86,7 +81,6 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
                             </br>
                         <label for="client" class="control-label" style="color:black; margin-top:10px; font-family:Helvetica,Arial,sans-serif;"><b>Total Payment Amount: </b><p id="totalPayment"></p></label>
                     </div>
@@ -94,7 +88,6 @@
                         <button id="submitOrderList"
                                 class="btn btn-danger btn-md btn-block text-uppercase waves-effect waves-light"
                                 style="background-color: #4c87ed; box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);" onclick="" type="button">Submit</button>
-
                         <button id="submitOrder"
                                 class="btn btn-danger btn-md btn-block text-uppercase waves-effect waves-light"
                                 style="display: none" type="submit">Submit</button>
@@ -317,7 +310,7 @@
         $('#orderMaterialList').append(
             '@if(isset($materials))<tr id="orderListNum'+count+'" style="color:black;">'+
             '<td> <select style="font-size:12px;" name="materials[]" class="form-control orderName"><option selected> Choose a Material</option>@foreach ($materials as $material)<option value="{{$material->id}}"  price="{{$material->price}}">{{$material->name}}</option> @endforeach</select> </td>' +
-            '<td><input value="" type="number" min="1" style="font-size:12px;" name="prices[]" step="0.01" class="form-control orderInventory addablePrice" placeholder="Price Each" readonly></td>' +
+            '<td><input value="" type="number" min="1" style="font-size:12px;" name="prices[]" step="0.01" class="form-control orderInventory addablePrice" placeholder="Price Each"></td>' +
             '<td><input value="" type="number" min="1" style="font-size:12px;" name="qtys[]" class="form-control orderInventory addableQty" placeholder="Quantity Ordered"></td> ' +
             '<td><i style="font-size:20px; color:#E53935; " class="linea linea-aerrow removeAddOrder" data-icon="&#xe04a;"></td> ' +
             '</tr>@endif');
