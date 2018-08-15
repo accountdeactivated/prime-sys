@@ -51,7 +51,7 @@ class MaterialsController extends Controller
         return redirect('/materials');
     }
 
-    /**
+    /***
      * Display the specified resource.
      *
      * @param  int  $id
