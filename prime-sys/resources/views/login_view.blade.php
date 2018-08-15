@@ -32,7 +32,7 @@
                         <div class="card-body">
                            <br>
                            @if(Session::has('failed'))
-                              <script>alert('invalid login!')</script>
+                              <script>alert('Credentials Incorrect!')</script>
                            @endif
                            <h2 class="card-title">Prime Auto</h2>
                            {!! Form::open(array('route'=>'logd', 'id'=>'loginform'))!!}

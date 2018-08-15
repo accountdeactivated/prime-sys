@@ -56,56 +56,6 @@ class SuppliersController extends Controller
         $sup = Suppliers::where('id',$id)->first();
         return $sup;
     }
-    public function create(Request $request)
-    {
-        //create a supplier and supplier order
-        $supOrd = new SupplierOrders();
-        $materials=$request->materials;
-        $qtys=$request->qtys;
-        $prices=$request->prices;
-        $total = 0;
-        $sum = 0;
-
-        foreach ($qtys as $qty){
-            $total += $qty;
-        }
-        foreach ($prices as $price){
-            $sum += $price;
-        }
-
-
-        $supOrd->supplierID = $request->supplier;
-        $supOrd->total_qty = $total;
-        $supOrd->posted_date = $request->postdate." 00:00:00";
-        $supOrd->total_price = $sum;
-        $supOrd->save();
-
-        $supOrd->created_at = null;
-        $supOrd->updated_at = null;
-
-        $last_insert_id = $supOrd->id;
-        $ctr=0;
-        foreach ($materials as $material){
-
-
-            $supOrdDet = new SupplierOrderDetails();
-            $supOrdDet->materialID = $material;
-            $supOrdDet->supplierOrderID = $last_insert_id;
-            $supOrdDet->price_each = $prices[$ctr];
-            $supOrdDet->qty = $qtys[$ctr];
-            $supOrdDet->total_price = $prices[$ctr] * $qtys[$ctr];
-
-            $supOrdDet->save();
-
-
-            $mt = self::getMaterialBySOID($supOrdDet->id);
-            $mt->current_qty = $mt->current_qty - $supOrdDet;
-
-            $ctr+=1;
-        }
-        return redirect("/supplierOrder");
-    }
-
     /**
      * Store a newly created resource in storage.
      *

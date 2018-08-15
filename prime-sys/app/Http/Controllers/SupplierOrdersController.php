@@ -110,6 +110,11 @@ class SupplierOrdersController extends Controller
             $sum += $supOrdDet->price_each;
             $supOrdDet->total_price = $prices[$ctr] * $qtys[$ctr];
             $supOrdDet->save();
+
+            $mt = self::getMaterialBySOID($supOrdDet->materialID);
+            $mt->current_qty = $mt->current_qty + $supOrdDet->qty;
+            $mt->save();
+
             $ctr+=1;
         }
 
