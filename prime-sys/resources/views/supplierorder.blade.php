@@ -108,11 +108,10 @@
               <div class="modal-dialog" role="document">
                   <div class="modal-content">
                       <div class="modal-header">
-                          <h4 class="modal-title" style="color:black; font-family:Helvetica,Arial,sans-serif;">Purchase Order Details</h4>
+                          <h4 class="modal-title" style="color:black; font-family:Helvetica,Arial,sans-serif;" id="dispPOitem">Purchase Order Details</h4>
                       </div>
                       <div class="modal-body">
-                          <label for="supplierList" class="control-label" style="color:black; font-family:Helvetica,Arial,sans-serif;"><b>Supplier:</b></label>
-                          <h5  style="font-size:14px; color:black; font-family:Helvetica,Arial,sans-serif;"><b id="dispPOitem">P</b></h5>
+
                           <br>
                           <div class="row" style="background-color:#F5F5F5; padding:3px;margin-top:10px;">
                               <h4  style="font-size:14px; color:black; font-family:Helvetica,Arial,sans-serif;"><b>Supplier Material Order/s</b></h4>
@@ -287,7 +286,7 @@
                 orderdetails = data.supplierorder.orderdetails;
                 supplierord = data.supplierorder;
 
-                $('#dispPOitem').html("PO_"+po);
+                $('#dispPOitem').html("PO_"+po+" "+data.supname);
                 $('#dispTotalQty').html(supplierord.total_qty);
                 $('#dispTotalPayment').html(supplierord.total_price);
 

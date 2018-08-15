@@ -54,6 +54,7 @@ class SupplierOrdersController extends Controller
 
         return response()->json([
             'supplierorder'=>$sup,
+            'supname'=>self::getSupplier($sup->supplierID)['name'],
             'orderdetails'=> $sup['orderdetails']
         ]);
     }
@@ -70,9 +71,9 @@ class SupplierOrdersController extends Controller
 
         return $so;
     }
+
     public static function getSupplier($id){
-        $sup = Suppliers::where('id',$id)->first();
-        return $sup;
+        return Suppliers::find($id);
     }
     public function store(Request $request)
     {
