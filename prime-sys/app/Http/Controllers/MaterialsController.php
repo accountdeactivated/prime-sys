@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Materials;
+use Faker\Provider\ka_GE\DateTime;
 use Illuminate\Http\Request;
 
 class MaterialsController extends Controller
@@ -37,7 +38,17 @@ class MaterialsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $maty = new Materials();
+        $maty->carID = null;
+        $maty->name = $request->matname;
+        $maty->restock_qty = null;
+        $maty->current_qty = $request->matcurrent_qty;
+        $maty->status = "Available";
+        $maty->created_at = Date('Y-m-d');
+        $maty->updated_at = now();
+        $maty->price = $request->price;
+        $maty->save();
+        return redirect('/materials');
     }
 
     /**

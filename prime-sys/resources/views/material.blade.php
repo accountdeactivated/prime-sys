@@ -41,18 +41,18 @@
                     </button>
                 </div>
 
-                {!! Form::open(array('route'=>'supplier.store'))!!}
+                {!! Form::open(array('route'=>'materials.store'))!!}
                 <div class="modal-body" style="color:black;">
                     <label for="serviceName" style="color:black;">Material Name</label>
-                    <input type="text" class="form-control" id="materialN" name="materialN" placeholder="Enter Material Name" required>
+                    <input type="text" class="form-control" id="materialN" name="matname" placeholder="Enter Material Name" required>
                     <br>
 
-                    <label for="serviceName" style="color:black;">Current Quantity</label>
-                    <input type="text" class="form-control" id="curQty" name="crQty" placeholder="Enter Quantity" required>
+                    <label for="serviceName" style="color:black;">Opening Stock</label>
+                    <input type="number" class="form-control" id="curQty" name="matcurrent_qty" placeholder="Enter amount" min="0" required>
                     <br>
 
                     <label for="serviceName" style="color:black;">Price</label>
-                    <input type="text" class="form-control" id="price" name="price" placeholder="Enter Price" required>
+                    <input type="number" class="form-control" id="price" name="price" placeholder="Enter Price" min="0" required>
                     <br>
 
                 </div>
