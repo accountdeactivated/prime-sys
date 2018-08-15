@@ -10,16 +10,16 @@
     </li>
 
     @if(Auth::user()->user_access==1)
-        <li class="nav-item {{{ (Request::is('porder') ? 'active' : '') }}}">
-            <a class="nav-link" href="./porder">
+        <li class="nav-item {{{ (Request::is('supplierOrder') ? 'active' : '') }}}">
+            <a class="nav-link" href="./supplierOrder">
                 <i class="material-icons">class</i>
-                <p>Purchase Orders</p>
+                <p>Supplier Orders</p>
             </a>
         </li>
-        <li class="nav-item {{{ (Request::is('sorder') ? 'active' : '') }}}">
-        <a class="nav-link" href="./sorder">
+        <li class="nav-item {{{ (Request::is('repairOrder') ? 'active' : '') }}}">
+        <a class="nav-link" href="./repairOrder">
             <i class="material-icons">receipt</i>
-            <p>Sales Orders</p>
+            <p>Repair Orders</p>
         </a>
     </li>
     @elseif(Auth::user()->user_access==2)
@@ -29,8 +29,8 @@
                 <p>Supplier Orders</p>
             </a>
         </li>
-        <li class="nav-item {{{ (Request::is('rorder') ? 'active' : '') }}}">
-            <a class="nav-link" href="./rorder">
+        <li class="nav-item {{{ (Request::is('repairOrder') ? 'active' : '') }}}">
+            <a class="nav-link" href="./repairOrder">
                 <i class="material-icons">receipt</i>
                 <p>Repair Orders</p>
             </a>

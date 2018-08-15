@@ -111,7 +111,7 @@
                       </div>
                       <div class="modal-body">
                           <label for="supplierList" class="control-label" style="color:black; font-family:Helvetica,Arial,sans-serif;"><b>Supplier:</b></label>
-                          <h5  style="font-size:14px; color:black; font-family:Helvetica,Arial,sans-serif;">Purchase Order: </h5><b id="dispPOitem">P</b>
+                          <h5  style="font-size:14px; color:black; font-family:Helvetica,Arial,sans-serif;"><b id="dispPOitem">P</b></h5>
                           <br>
                           <div class="row" style="background-color:#F5F5F5; padding:3px;margin-top:10px;">
                               <h4  style="font-size:14px; color:black; font-family:Helvetica,Arial,sans-serif;"><b>Supplier Material Order/s</b></h4>

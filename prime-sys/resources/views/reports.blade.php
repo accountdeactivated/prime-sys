@@ -13,10 +13,8 @@
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  <!-- CSS Files -->
-  <link href="../assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <link href={{asset('css/material-dashboard.css')}} rel="stylesheet" />
+  <link href={{asset('demo/demo.css')}} rel="stylesheet" />
 </head>
 
 <body class="">
@@ -33,68 +31,7 @@
         </a>
       </div>
       <div class="sidebar-wrapper">
-        <ul class="nav">
-          <li class="nav-item  ">
-            <a class="nav-link" href="./Main_Controller">
-              <i class="material-icons">dashboard</i>
-              <p>Dashboard</p>
-            </a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="./Reports_Controller">
-              <i class="material-icons">file_copy</i>
-              <p>Reports</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./Client">
-              <i class="material-icons">group</i>
-              <p>Clients</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./Employee">
-              <i class="material-icons">group</i>
-              <p>Employees</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./Orders">
-              <i class="material-icons">file_copy</i>
-              <p>Orders</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./Add_Users_Controller">
-              <i class="material-icons">add_circle</i>
-              <p>Add Users</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./Add_Suppliers_Controller">
-              <i class="material-icons">group</i>
-              <p>Suppliers</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./Add_Service_Controller">
-              <i class="material-icons">build</i>
-              <p>Services</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./restockInventory_Controller">
-              <i class="material-icons">file_copy</i>
-              <p>Restock Inventory</p>
-            </a>
-          </li>
-          <!-- <li class="nav-item active-pro ">
-                <a class="nav-link" href="./upgrade.html">
-                    <i class="material-icons">unarchive</i>
-                    <p>Upgrade to PRO</p>
-                </a>
-            </li> -->
-        </ul>
+        @include('layouts.sidebar')
       </div>
     </div>
     <div class="main-panel">
@@ -168,34 +105,65 @@
                   <p class="card-category">List of all the Reports</p>
                 </div>
                 <div class="card-body">
-                  <form>
-                    <ul class="nav">
-                      <li class="nav-item  ">
-                        <a class="nav-link" href="./Main_Controller">
-                          <i class="material-icons">file_copy</i>
-                          <p>Daily Sales Report</p>
-                        </a>
-                      </li>
+                  <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                      <div class="card card-stats">
+                        <div class="card-header card-header-success card-header-icon">
+                          <div class="card-icon">
+                            <i class="material-icons">store</i>
+                          </div>
+                          <p class="card-category">
+                            <a href="./Main_Controller">
+                              <p>Daily Sales Report</p>
+                            </a>
+                          </p>
+                        </div>
+                        <div class="card-footer">
+                          <div class="stats">
+                            <i class="material-icons">update</i>Weekly Report
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                      <div class="card card-stats">
+                        <div class="card-header card-header-info card-header-icon">
+                          <div class="card-icon">
+                            <i class="material-icons">payment</i>
+                          </div>
+                          <p class="card-category">
+                            <a href="./Main_Controller">
+                              Revenue Report
+                            </a>
+                        </div>
+                        <div class="card-footer">
+                          <div class="stats">
+                            <i class="material-icons">update</i>Weekly Report
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                      <div class="card card-stats">
+                        <div class="card-header card-header-warning card-header-icon">
+                          <div class="card-icon">
+                            <i class="material-icons">today</i>
+                          </div>
+                          <p class="card-category">
+                            <a href="">
+                            Inventory Report
+                            </a>
+                          </p>
 
-                      <li class="nav-item  ">
-                        <a class="nav-link" href="./Main_Controller">
-                          <i class="material-icons">file_copy</i>
-                          <p>Revenue Report</p>
-                        </a>
-                      </li>
-
-                      <li class="nav-item  ">
-                        <a class="nav-link" href="./Inventory_Report_Controller">
-                          <i class="material-icons">file_copy</i>
-                          <p>Inventory Report</p>
-                        </a>
-                      </li>
-                  </ul>
-                  <button type="button" rel="tooltip" title="Back" style="float:right" class="btn btn-primary btn-round">
-                        <i class="material-icons" onclick="location.href='<?php echo base_url();?>index.php/Main_Controller'">keyboard_return</i>
-                  </button>
-                    <div class="clearfix"></div>
-                  </form>
+                        </div>
+                        <div class="card-footer">
+                          <div class="stats">
+                            <i class="material-icons">update</i>Weekly Report
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -220,5 +188,10 @@
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
 </body>
-
 </html>
+<script>
+    function redirect() {
+        window.location = "http://localhost:8000/home";
+    }
+
+</script>
