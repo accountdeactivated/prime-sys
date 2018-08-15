@@ -48,7 +48,7 @@
                             </select>
                             <br>
                             <label for="supplierList" class="control-label" style="color:black; font-family:Helvetica,Arial,sans-serif;"><b>Posting Date:</b></label>
-                            <input type="date" name="posted_date" id="datePicker" class="form-control">
+                            <input type="date" name="posted_date" id="datePicker" class="form-control" required>
                             <br>
                             <div class="row" style="background-color:#F5F5F5; padding:3px;margin-top:10px;">
 
@@ -72,7 +72,7 @@
                                         <tbody id="orderMaterialList">
                                         <tr style="color:black;" id="orderListNum1">
                                             <td>
-                                                <select style="font-size:12px;" name="materials[]" class="form-control orderName">
+                                                <select style="font-size:12px;" name="materials[]" class="form-control orderName" required>
                                                     <option selected disabled>Choose a Material </option>
                                                     @foreach ($materials as $material)
                                                         <option value="{{$material->id}}" price="{{$material->price}}">{{$material->name}}</option>
@@ -129,9 +129,9 @@
                                       </thead>
                                       <tbody class="dispOrderMaterialList">
                                       <tr>
-                                          <td><input type="text" value="" readonly></td>
-                                          <td><input type="text" value="" readonly></td>
-                                          <td><input type="text" value="" readonly></td>
+                                          <td><input type="text" value="" readonly required></td>
+                                          <td><input type="text" value="" readonly required></td>
+                                          <td><input type="text" value="" readonly required></td>
                                       </tr>
                                       </tbody>
                                   </table>
@@ -226,16 +226,16 @@
         document.getElementById("datePicker").value = today;
     }
 
-    $(document).on('click', '#submitSupplier', function() {
-        var supplierN = document.getElementById('serviceN').value;
-        var supplierA = document.getElementById('serviceA').value;
-        var supplierCn = document.getElementById('serviceCn').value;
-        var supplierCp = document.getElementById('serviceCp').value;
-        if (supplierN != "" && supplierA != "" && supplierCn != "" && supplierCp != ""){
-            document.getElementById("submitSupplierEntry").click();
-        }
-        alert("Please Input The Necessary Details");
-    });
+    // $(document).on('click', '#submitSupplier', function() {
+    //     var supplierN = document.getElementById('serviceN').value;
+    //     var supplierA = document.getElementById('serviceA').value;
+    //     var supplierCn = document.getElementById('serviceCn').value;
+    //     var supplierCp = document.getElementById('serviceCp').value;
+    //     if (supplierN != "" && supplierA != "" && supplierCn != "" && supplierCp != ""){
+    //         document.getElementById("submitSupplierEntry").click();
+    //     }
+    //     alert("Please Input The Necessary Details");
+    // });
     $(document).on('change', '.addablePrice', function (e) {
 
         var inputsQtys = document.getElementsByClassName('addableQty');
@@ -300,9 +300,9 @@
 
                     $('.dispOrderMaterialList').append(
                         '<tr>' +
-                        '<td>'+'<input type="text" class="form-control" value="'+orderdetails[key].materialName+'" readonly>'+'</td>' +
-                        '<td>'+'<input type="text" class="form-control" value="'+orderdetails[key].price_each+'" readonly>'+'</td>' +
-                        '<td>'+'<input type="text" class="form-control" value="'+orderdetails[key].qty+'" readonly>'+'</td>'+
+                        '<td>'+'<input type="text" class="form-control" value="'+orderdetails[key].materialName+'" readonly required>'+'</td>' +
+                        '<td>'+'<input type="text" class="form-control" value="'+orderdetails[key].price_each+'" readonly required>'+'</td>' +
+                        '<td>'+'<input type="text" class="form-control" value="'+orderdetails[key].qty+'" readonly required>'+'</td>'+
                         '</tr>'
                     );
                 });
@@ -325,22 +325,24 @@
             '</tr>@endif');
     });
 
-    $(document).on('click', '#submitOrderList', function() {
-        var supplier = document.getElementById('supplierList').value;
-        if (supplier != "Choose a Supplier"){
-            document.getElementById("submitOrder").click();
-        }
-        alert("Please Input The Necessary Details");
-    });
+     $(document).on('click', '#submitOrderList', function() {
+         var supplier = document.getElementById('supplierList').value;
+         if (supplier != "Choose a Supplier"){
+             document.getElementById("submitOrder").click();
+         } else {
+             alert("Please Input The Necessary Details");
+         }
 
-    $(document).on('click', '#submitSupplier', function() {
-        var supplierN = document.getElementById('serviceN').value;
-        var supplierA = document.getElementById('serviceA').value;
-        var supplierCn = document.getElementById('serviceCn').value;
-        var supplierCp = document.getElementById('serviceCp').value;
-        if (supplierN != "" && supplierA != "" && supplierCn != "" && supplierCp != ""){
-            document.getElementById("submitSupplierEntry").click();
-        }
-        alert("Please Input The Necessary Details");
     });
+    //
+    // $(document).on('click', '#submitSupplier', function() {
+    //     var supplierN = document.getElementById('serviceN').value;
+    //     var supplierA = document.getElementById('serviceA').value;
+    //     var supplierCn = document.getElementById('serviceCn').value;
+    //     var supplierCp = document.getElementById('serviceCp').value;
+    //     if (supplierN != "" && supplierA != "" && supplierCn != "" && supplierCp != ""){
+    //         document.getElementById("submitSupplierEntry").click();
+    //     }
+    //     alert("Please Input The Necessary Details");
+    // });
 </script>

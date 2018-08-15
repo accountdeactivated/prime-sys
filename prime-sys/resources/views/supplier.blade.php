@@ -44,23 +44,23 @@
                 {!! Form::open(array('route'=>'supplier.store'))!!}
                 <div class="modal-body" style="color:black;">
                     <label for="serviceName" style="color:black;">Supplier Name</label>
-                    <input type="text" class="form-control" id="serviceN" name="name" placeholder="Enter name">
+                    <input type="text" class="form-control" id="serviceN" name="name" placeholder="Enter name" required>
                     <br>
 
                     <label for="serviceName" style="color:black;">Address</label>
-                    <input type="text" class="form-control" id="serviceA" name="address" placeholder="Enter address">
+                    <input type="text" class="form-control" id="serviceA" name="address" placeholder="Enter address" required>
                     <br>
 
                     <label for="serviceName" style="color:black;">Contact Person</label>
-                    <input type="text" class="form-control" id="serviceCp" name="contactPerson" placeholder="Enter contact person">
+                    <input type="text" class="form-control" id="serviceCp" name="contactPerson" placeholder="Enter contact person" required>
                     <br>
 
                     <label for="serviceName" style="color:black;">Contact Number</label>
-                    <input type="number" class="form-control" id="serviceCn" name="contactNumber" placeholder="Enter contact #">
+                    <input type="number" class="form-control" id="serviceCn" name="contactNumber" placeholder="Enter contact #" required>
                     <br>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-danger btn-md btn-block text-uppercase waves-effect waves-light" id="submitSupplier" style="background-color: #4c87ed; box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);" type="button">Submit</button>
+                    <button class="btn btn-danger btn-md btn-block text-uppercase waves-effect waves-light" id="submitSupplier" style="background-color: #4c87ed; box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);" type="submit">Submit</button>
                     <button style="display: none" class="btn btn-danger btn-md btn-block text-uppercase waves-effect waves-light" id="submitSupplierEntry" style="background-color: #4c87ed; box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);" type="submit">Submit</button>
                 </div>
                 {!!Form::close()!!}
@@ -188,22 +188,22 @@
             '</tr>@endif');
     });
 
-    $(document).on('click', '#submitOrderList', function() {
-        var supplier = document.getElementById('supplierList').value;
-        if (supplier != "Choose a Supplier"){
-            document.getElementById("submitOrder").click();
-        }
-        alert("Please Input The Necessary Details");
-    });
+    // $(document).on('click', '#submitOrderList', function() {
+    //     var supplier = document.getElementById('supplierList').value;
+    //     if (supplier != "Choose a Supplier"){
+    //         document.getElementById("submitOrder").click();
+    //     }
+    //     alert("Please Input The Necessary Details");
+    // });
 
-    $(document).on('click', '#submitSupplier', function() {
-        var supplierN = document.getElementById('serviceN').value;
-        var supplierA = document.getElementById('serviceA').value;
-        var supplierCn = document.getElementById('serviceCn').value;
-        var supplierCp = document.getElementById('serviceCp').value;
-        if (supplierN != "" && supplierA != "" && supplierCn != "" && supplierCp != ""){
-            document.getElementById("submitSupplierEntry").click();
-        }
-        alert("Please Input The Necessary Details");
-    });
+    // $(document).on('click', '#submitSupplier', function() {
+    //     var supplierN = document.getElementById('serviceN').value;
+    //     var supplierA = document.getElementById('serviceA').value;
+    //     var supplierCn = document.getElementById('serviceCn').value;
+    //     var supplierCp = document.getElementById('serviceCp').value;
+    //     if (supplierN != "" && supplierA != "" && supplierCn != "" && supplierCp != ""){
+    //         document.getElementById("submitSupplierEntry").click();
+    //     }
+    //     alert("Please Input The Necessary Details");
+    // });
 </script>
