@@ -72,9 +72,11 @@ class SuppliersController extends Controller
         foreach ($prices as $price){
             $sum += $price;
         }
+
+
         $supOrd->supplierID = $request->supplier;
         $supOrd->total_qty = $total;
-        $supOrd->posted_date = $request->posted_date;
+        $supOrd->posted_date = $request->postdate." 00:00:00";
         $supOrd->total_price = $sum;
         $supOrd->save();
 

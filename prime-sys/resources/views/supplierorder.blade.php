@@ -53,7 +53,6 @@
                             <div class="row" style="background-color:#F5F5F5; padding:3px;margin-top:10px;">
 
                                 <h4  style="font-size:14px; color:black; font-family:Helvetica,Arial,sans-serif;"><b>Supplier Material Order/s</b></h4>
-                                <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Select the supplier's material order based on the list. <b style="color:#E53935;">*Required</b></span>
                                 <br>
                                 <label for="order" class="control-label">
                                     <button id="materialAdd" class="btn btn-primary" style="border-radius: 80px" type="button"><span class="btn-label"><i class="fa fa-plus-square"></i></span> Add Material <div class="ripple-container"></div></button>
@@ -153,7 +152,7 @@
                      <div class="card">
                         <div class="card-header card-header-primary">
                            <h4 class="card-title ">Purchase Orders
-                              <button id="addNewServiceButton" data-toggle="modal" data-target="#addNewPOModal" type=" button" rel="tooltip" title="Add New Service" class="btn btn-primary btn-fab btn-fab-mini btn-round">
+                              <button id="addNewServiceButton" data-toggle="modal" data-target="#addNewPOModal" type=" button" rel="tooltip" title="Add Supplier Order" class="btn btn-primary btn-fab btn-fab-mini btn-round">
                               <i class="material-icons">add_circle</i>
                               </button>
                            </h4>
@@ -164,10 +163,10 @@
                            <div class="table-responsive">
                               <table class="table" id="dataTable" width="" height="150">
                                  <thead class="text-primary" style="font-size:20px;">
-                                    <th><span class="fa fa-vcard" role="icon"></span> ORDER ID</th>
+                                    <th><span class="fa fa-vcard" role="icon"></span> PO ID</th>
                                     <th><span class="fa fa-file-text" role="icon"></span> Supplier</th>
                                     <th><span class="fa fa-file-text" role="icon"></span> Total QTY</th>
-                                    <th><span class="fa fa-newspaper-o" role="icon"></span> Created at</th>
+                                    <th><span class="fa fa-newspaper-o" role="icon"></span> Posted Date</th>
                                  </thead>
                                  <tbody id="suppliers" style="font-size:20px;">
                                   @foreach($suppliersorders as $sup)
@@ -175,7 +174,7 @@
                                           <td><a class="cliq" po="{{$sup->id}}" data-toggle="modal" data-target="#displayPOModal">PO_{{$sup->id}}</a></td>
                                           <td>{{$sup['supplier']['name']}}</td>
                                           <td>{{$sup->total_qty}}</td>
-                                          <td>{{$sup->created_at}}</td>
+                                          <td>{{$sup->posted_date}}</td>
                                       </tr>
                                   @endforeach
                                   </tbody>
