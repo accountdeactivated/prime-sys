@@ -34,6 +34,9 @@ class SuppliersController extends Controller
             ->with('suppliers', $sup)
             ->with('materials', $mat);
     }
+    public static function getMaterialBySOID($id){
+        return Materials::find($id);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -90,8 +93,12 @@ class SuppliersController extends Controller
             $supOrdDet->qty = $qtys[$ctr];
             $supOrdDet->total_price = $prices[$ctr] * $qtys[$ctr];
 
-
             $supOrdDet->save();
+
+
+            $mt = self::getMaterialBySOID($supOrdDet->id);
+            $mt->current_qty = $mt->current_qty - $supOrdDet;
+
             $ctr+=1;
         }
         return redirect("/supplierOrder");
