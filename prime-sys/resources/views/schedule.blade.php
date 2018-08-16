@@ -145,7 +145,7 @@
     }
     function henlo(val){
         console.log(val);
-        alert(1);
+        alert(val);
         //alert(abs);
     }
     $('.event-calendar').equinox({
@@ -157,8 +157,8 @@
                 start: '{{$schedule->posted_date}}',
                 end: '{{$schedule->posted_date}}',
                 title: '[P0{{$schedule->id}}] Supplier Purchase from {{$schedule->supname}}',
-                url: 'javascript:henlo("{{$schedule->id}}")',
-                class: 'custom-class',
+                url: 'javascript:henlo({{$schedule->id}})',
+                class: '',
                 color: '#{{$schedule->color}}',
                 data: {}
             },
