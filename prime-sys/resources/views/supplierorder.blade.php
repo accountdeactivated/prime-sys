@@ -268,7 +268,7 @@
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             }
         });
-        e.preventDefault();
+      //  e.preventDefault();
         var formData = {
             po_number:po
         };

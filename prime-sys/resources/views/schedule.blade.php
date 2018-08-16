@@ -6,6 +6,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>
     Material Dashboard by Creative Tim
   </title>
@@ -17,6 +18,7 @@
 
 
     <!--general script section-->
+
     <script src={{asset('js/core/jquery.min.js')}}></script>
     <script src={{asset('js/core/popper.min.js')}}></script>
     <script src={{asset('js/core/bootstrap-material-design.min.js')}}></script>
@@ -29,13 +31,14 @@
 
     <!-- Calendar Dependencies --><!-- Calendar Dependencies --><!-- Calendar Dependencies -->
   <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 
 
   <link href="{{asset('dist/equinox.css')}}" rel="stylesheet" type="text/css">
   <script src="{{asset('dist/equinox.min.js')}}"></script>
 
+    <meta name="_token" content="{!! csrf_token() !!}">
   <!-- Calendar Dependencies --><!-- Calendar Dependencies --><!-- Calendar Dependencies -->
 </head>
 
@@ -46,7 +49,10 @@
                 <h4 class="modal-title" style="color:black; font-family:Helvetica,Arial,sans-serif;" id="dispPOitem">Event Details</h4>
             </div>
             <div class="modal-body">
-                <br>
+
+                <label for="client" class="control-label" style="color:black; margin-top:10px; font-family:Helvetica,Arial,sans-serif;">Posting Date:</label>
+                <input type="text" id="displayPostdate"  style="padding-left: 10px" class="form-control" value="" readonly/>
+
                 <div class="row" style="background-color:#F5F5F5; padding:3px;margin-top:10px;">
                     <h4  style="font-size:14px; color:black; font-family:Helvetica,Arial,sans-serif;"><b>Supplier Material Order/s</b></h4>
                     <div class="table-responsive" style="margin-top:10px;">
@@ -56,7 +62,6 @@
                                 <th>Material Name</th>
                                 <th>Price per piece</th>
                                 <th>Order Qty </th>
-                                <th><i class="fa fa-gear"></i></th>
                             </tr>
                             </thead>
                             <tbody class="dispOrderMaterialList">
@@ -70,9 +75,9 @@
                     </div>
                 </div>
                 <hr>
-                <label for="client" class="control-label" style="color:black; margin-top:10px; font-family:Helvetica,Arial,sans-serif;"><b>Total Quantity: </b><p id="dispTotalQty"></p></label>
+                <label for="client" class="control-label" style=" color:black; margin-top:10px; font-family:Helvetica,Arial,sans-serif;"><b style="display: inline;">Total Quantity: </b><p id="dispTotalQty" style="display: inline;"></p></label>
                 <br>
-                <label for="client" class="control-label" style="color:black; margin-top:10px; font-family:Helvetica,Arial,sans-serif;"><b>Total Amount: </b><p id="dispTotalPayment"></p></label>
+                <label for="client" class="control-label" style="color:black; margin-top:10px; font-family:Helvetica,Arial,sans-serif;"><b style="display: inline;">Total Amount: P</b><p id="dispTotalPayment" style="display: inline;"></p></label>
             </div>
         </div>
     </div>
@@ -178,15 +183,73 @@
     </div>
   </div>
 </body>
+
 </html>
 <script>
     function redirect() {
         window.location = "http://localhost:8000/home";
     }
+    function ajax_supplierorder(val){
+        console.log("ajax="+val);
+        var po = val;
+
+       // e.preventDefault();
+
+        var formData = {
+            po_number:po
+        };
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: 'getPOdetails',
+            data: formData,
+            success: function(data){
+                console.log('PO Data:',data);
+                orderdetails = data.supplierorder.orderdetails;
+                supplierord = data.supplierorder;
+
+                $('#dispPOitem').html("PO_"+po+" "+data.supname);
+                $('#dispTotalQty').html(supplierord.total_qty);
+                $('#dispTotalPayment').html(supplierord.total_price);
+                $('#displayPostdate').val(supplierord.posted_date);
+                console.log("bobo: "+orderdetails.length);
+                $('.dispOrderMaterialList').empty();
+
+
+                Object.keys( orderdetails ).forEach(function( key ) {
+                    $('.dispOrderMaterialList').append(
+                        '<tr>' +
+                        '<td>'+'<input type="text" class="form-control" value="'+orderdetails[key].materialName+'" readonly required>'+'</td>' +
+                        '<td>'+'<input type="text" class="form-control" value="'+orderdetails[key].price_each+'" readonly required>'+'</td>' +
+                        '<td>'+'<input type="text" class="form-control" value="'+orderdetails[key].qty+'" readonly required>'+'</td>'+
+                        '</tr>'
+                    );
+                });
+            },
+            error: function (data) {
+                console.log('Data Error:', data);
+            }
+        });
+    }
+    function ajax_clientorder(val) {
+
+    }
     function henlo(val,type){
-        console.log(val);
-        alert(type);
-        $('#showclick').click();
+        //0 is supplier order, 1 is client orders
+        if(type === 0){
+            console.log("inside type 1");
+            ajax_supplierorder(val);
+            $('#showclick').click();
+        }
+        else{
+            ajax_clientorder();
+            $('#showclick').click();
+        }
+
     }
     $('.event-calendar').equinox({
         onEventClick: function(){

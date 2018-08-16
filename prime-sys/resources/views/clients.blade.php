@@ -112,7 +112,7 @@
                         <div class="card">
                             <div class="card-header card-header-primary">
                                 <h4 class="card-title ">Client List
-                                        Top Center<div class="ripple-container"></div></button>
+                                        <div class="ripple-container"></div></button>
                                     <button id="addNewServiceButton" data-toggle="modal" data-target="#addClientModal" type=" button" rel="tooltip" title="Add New Client" class="btn btn-primary btn-fab btn-fab-mini btn-round">
                                         <i class="material-icons">add_circle</i>
                                     </button>
@@ -146,12 +146,12 @@
                                                     {!! Form::open(['route'=>['clients.destroy',$client->id],'method'=>'DELETE','enctype'=>'multipart/form-data','class'=>'removeclient','style'=>'display:inline;margin-left:5px']) !!}
                                                     <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" data-original-title="Delete Client">
 
-                                                        <i class="material-icons" style="display:inline;margin-left:5px" >delete</i>
+                                                        <i class="material-icons" style="display:inline;" >delete</i>
                                                         <div class="ripple-container"></div></button>
                                                     {!! Form::close() !!}
 
                                                     <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" data-original-title="Edit Client">
-                                                        <i class="material-icons update" data-toggle="modal" style="display:inline;margin-left:5px" data-target="#editClientModal"
+                                                        <i class="material-icons update" data-toggle="modal" style="display:inline;" data-target="#editClientModal"
                                                            cid="{{$client->id}}"
                                                            name="{{$client->name}}"
                                                            email="{{$client->email}}"
