@@ -152,43 +152,17 @@
         onEventClick: function(e){
         },
         events: [
-            @foreach($schedules as $schedule)
+            @foreach($SOschedules as $schedule)
             {
-                start: '2018-04-20 17:30',
-                end: '2018-04-22 17:30',
-                title: '.Net',
-                url: '#',
-                class: '',
-                color: '#000',
-                data: {}},
-            @endforeach
-
-            {
-                start: '2018-05-20 17:30:00',
-                end: '2018-05-22 17:30:00',
-                title: 'Event 2',
-                url: '#',
+                start: '{{$schedule->posted_date}}',
+                end: '{{$schedule->posted_date}}',
+                title: '[P0{{$schedule->id}}] Supplier Purchase from {{$schedule->supname}}',
+                url: 'javascript:henlo("{{$schedule->id}}")',
                 class: 'custom-class',
-                color: '#000',
-                data: {hace:"skwater"}
+                color: '#{{$schedule->color}}',
+                data: {}
             },
-            {
-                start: '2018-08-20 00:00:00',
-                end: '2018-08-20 1:00:00',
-                title: 'Gagito',
-                url: 'javascript:henlo('+'1'+')',
-                class: 'xd',
-                color: '#000',
-                data: {hace:"lissa magpants"}
-            },{
-                start: '2018-08-20 02:00:00',
-                end: '2018-08-20 3:00:00',
-                title: 'Gagito',
-                url: 'javascript:henlo('+'1'+')',
-                class: 'xd',
-                color: '#000',
-                data: {hace:"lissa magpants"}
-            }
+            @endforeach
             ]
     });
 </script>

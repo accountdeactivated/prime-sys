@@ -94,7 +94,7 @@ class SupplierOrdersController extends Controller
         $supOrd->supplierID = $request->supplier;
         $supOrd->total_qty = $total;
         $supOrd->total_price = $sum;
-        $supOrd->posted_date = $request->posted_date;
+        $supOrd->posted_date = $request->posted_date ." ". date("h:i:s");
 
         $supOrd->save();
 

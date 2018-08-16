@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\RepairOrders;
 use App\SupplierOrders;
+use App\Suppliers;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
@@ -25,9 +27,20 @@ class ScheduleController extends Controller
     public function index()
     {
         $s = SupplierOrders::all();
+        $o = RepairOrders::all();
+        foreach ($s as $x){
+            $x['color'] ="99baef";
+            $x['supname']= self::getSupplier($x->supplierID)['name'];
+        }
 
-        //it was return view('home') before.
+        foreach ($o as $z){
+            $z['color'] ="a7fc79";
+        }
+
         return view('schedule')
-            ->with('schedules',$s);
+            ->with('SOschedules',$s);
+    }
+    public static function getSupplier($id){
+        return Suppliers::find($id);
     }
 }
