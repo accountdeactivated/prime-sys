@@ -46,7 +46,6 @@ Route::resource('materials', "MaterialsController");
 Route::resource('/', 'IndexController');
 Route::post('logd', 'LoginController@store')->name('logd');
 Route::post('upd', 'ClientsController@create')->name('upd');
-
 Route::resource('repairOrder', 'RepairOrdersController');
 Route::resource('reports', 'ReportsController');
 Route::resource('logout', 'LogoutController');
@@ -56,7 +55,15 @@ Route::post('getPOdetails','SupplierOrdersController@ajaxGetPOdetails');
 //Live AJAX Update
 //Done By: PrivateAirJET
 Route::post('liveAddService','ServiceAddLiveUpdateController@liveUpdate');
+Route::post('liveAddCar','CarAddLiveUpdateController@liveUpdate');
+Route::post('liveAddCarMaker','CarMakerAddLiveUpdateController@liveUpdate');
 Route::post('liveEditService','ServiceEditLiveUpdateController@liveUpdate');
+Route::post('liveCarModelUpdate','CarModelLiveUpdateController@liveUpdate');
+Route::post('liveServiceTypeUpdate','ServiceTypeLiveUpdateController@liveUpdate');
+Route::post('liveServiceNameUpdate','ServiceNameLiveUpdateController@liveUpdate');
+Route::post('liveAddRepairOrder','RepairServiceAddLiveUpdateController@liveUpdate');
+Route::post('liveRepairOrderStatusUpdate','RepairOrderStatusLiveUpdateController@liveUpdate');
+Route::post('liveRepairOrderDetailStatusUpdate','RepairOrderDetailStatusLiveUpdateController@liveUpdate');
 
 
 //Auth Route

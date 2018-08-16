@@ -45,26 +45,81 @@
 
                     <!--client_name-->
                     <label for="clientName" style="color:black;">Client Name</label>
-                    <input type="email" class="form-control" id="clientName" placeholder="Enter the client name">
+                    <select class="form-control" data-style="btn btn-link" id="clientName">
+                        <option disabled selected>Choose a client</option>
+                        @if(isset($clients))
+                            @foreach($clients as $info)
+                                <option data-id="{{$info->id}}" value="{{$info->name}}">{{$info->name}}</option>
+                            @endforeach
+                        @endif
+                    </select>
                     <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the name of the client. <b style="color:#E53935;">*Required</b></span>
                     <br>
                     <!--car_maker-->
-                    <label for="carManufacturer" style="margin-top:20px; color:black;">Car Manufacturer</label>
-                    <select class="form-control" data-style="btn btn-link" id="carManufacturer">
-                     
+                    <label for="carMaker" style="margin-top:20px; color:black;">Car Maker</label>
+                    <select class="form-control" data-style="btn btn-link" id="carMaker">
+                        <option disabled selected>Choose a manufacturer</option>
+                        @if(isset($carmakers))
+                            @foreach($carmakers as $info)
+                                <option data-percentage="{{$info->percentage}}" data-id="{{$info->id}}" value="{{$info->company}}">{{$info->company}}</option>
+                            @endforeach
+                        @endif
                     </select>
                     <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the car manufacturer from the order. <b style="color:#E53935;">*Required</b></span>
                     <br>
                     <!--car_model-->
                     <label for="carModel" style="margin-top:20px; color:black;">Car Model</label>
-                    <textarea class="form-control" id="carModel" rows="2"></textarea>
+                    <select class="form-control" data-style="btn btn-link" id="carModel">
+                        <option>N/A</option>
+                    </select>
                     <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the model of the car.<b style="color:#E53935;">*Required</b></span>
-                    <br>
+                    <hr>
 
-
-
-
-
+                    <!--repair-order-->
+                    <div class="row" style="margin-top:20px;">
+                        <div class="col s12">
+                            <button id="AddServiceButton" style="float:left;" type="button" class="btn btn-success">Add Service</button>
+                        </div>
+                      
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <h6 style="text-align:center">LIST OF SERVICE ORDER/S</h6>
+                        </div>
+                    </div>
+                
+                    <div class="row" style="border: 1px solid black; margin:5px; background-color:#E1BEE7;">
+                        <div class="col s12">
+                           <div class="table-responsive">
+                                <table class="table table-responsive centered" style="width:100%; min-height:100px;">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Type</th>
+                                            <th>Name</th>
+                                            <th>Cost (PHP)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="serviceList">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col s4">
+                            <h6 style="text-align:center;">Gross Price: <br> <b id="grossPrice"></b></h6>
+                        </div>
+                        <div class="col s4">
+                            <h6 style="text-align:center;">Multiplier: <br> <b id="multiplier"></b></h6>
+                        </div>
+                        <div class="col s4">
+                            <h6 style="text-align:center;">Total Price: <br> <b id="totalPrice"></b></h6>
+                            <input id="totalPriceValue" type="hidden" value="0" />
+                        </div>
+                    </div>
+                    <hr style="margin-bottom:0;">
                     <!--expected_deadline-->
                     <label for="expectedDeadline" style="margin-top:20px; color:black;">Expected Deadline</label>
                     <input type="date" class="form-control" id="expectedDeadline">
@@ -72,58 +127,12 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="submitAddService"type="button" class="btn btn-primary">Submit</button>
+                    <button id="submitAddRepairService"type="button" class="btn btn-primary">Submit</button>
                 </div>
                 </div>
             </div>
         </div>
        <!--modal_ends_here 
-        commented by: PrivateAirJET
-        -->
-
-        <!--modal_starts_here 
-        commented by: PrivateAirJET
-        -->
-        <div id="editServiceModal" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" style="color:black;">Update Service Detail</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" style="color:black;">
-                    <input type="hidden" id="serviceIDEdit" name="serviceIDEdit">
-                    <!--service_name-->
-                    <label for="serviceNameEdit" style="color:black;">Service Name</label>
-                    <input type="email" class="form-control" id="serviceNameEdit" placeholder="Enter the service name">
-                    <br>
-                    <!--service_type-->
-                    <label for="serviceTypeEdit" style="margin-top:20px; color:black;">Service Type</label>
-                    <select class="form-control" data-style="btn btn-link" id="serviceTypeEdit">
-                        <option selected disabled>Choose a service type</option>
-                        <option>Repair</option>
-                        <option>Painting</option>
-                        <option>Washing</option>
-                    </select>
-                    <br>
-                    <!--service_description-->
-                    <label for="serviceDescriptionEdit" style="margin-top:20px; color:black;">Service Description</label>
-                    <textarea class="form-control" id="serviceDescriptionEdit" rows="2"></textarea>
-                    <br>
-                    <!--service_cost-->
-                    <label for="serviceCostEdit" style="margin-top:20px; color:black;">Service Cost</label>
-                    <input type="number" class="form-control" id="serviceCostEdit" placeholder="Enter the service cost.">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="submitEditService"type="button" class="btn btn-primary">Submit</button>
-                </div>
-                </div>
-            </div>
-        </div>
-        <!--modal_ends_here 
         commented by: PrivateAirJET
         -->
 
@@ -147,31 +156,30 @@
                               <table class="table" id="dataTable" width="" height="150">
                                  <thead class="text-primary" style="font-size:20px;">
                                     <th>Order ID</th>
-                                    <th><span class="fa fa-vcard" role="icon"></span> Order Date</th>
+                                    <th><span class="fa fa-vcard" role="icon"></span> OrderID</th>
                                     <th><span class="fa fa-file-text" role="icon"></span> Order Deadline</th>
                                     <th><span class="fa fa-newspaper-o" role="icon"></span> Order Status</th>
                                     <th><span class="fa fa-money" role="icon"></span>Payment Status</th>
-                                    <th><span class="fa fa-money" role="icon"></span>Total Amount</th>
+                                    <th><span class="fa fa-money" role="icon"></span>Total Amount (PHP)</th>
                                     <th> <span class="fa fa-gears" role="icon"></span> Actions</th>
                                  </thead>
-                                 <tbody id="servicesList" style="font-size:20px;">
-                                    {{-- @if(isset($services))
-                                        @php($count=0)
-                                        @foreach($services as $service)
-                                        @php($count=$count+1)
-                                        <tr id="serviceNumber{{$service->id}}">
-                                            <td id="serviceID{{$service->id}}">{{$service->id}}</td>
-                                            <td id="serviceName{{$service->id}}">{{$service->name}}</td>
-                                            <td id="serviceType{{$service->id}}">{{$service->type}}</td>
-                                            <td id="serviceDescription{{$service->id}}">{{$service->description}}</td>
-                                            <td id="serviceCost{{$service->id}}">{{$service->cost}}</td>
+                                 <tbody id="repairslist" style="font-size:20px;">
+                                    @if(isset($orders))
+                                        @foreach($orders as $info)
+                                        <tr id="orderNumber{{$info->id}}">
+                                            <td id="orderID{{$info->id}}"><a href="/repairOrder/{{$info->id}}">{{$info->id}}</a></td>
+                                            <td id="orderDeadline{{$info->id}}">{{date('Y/m/d',strtotime($info->created_at))}}</td>
+                                            <td id="orderDeadline{{$info->id}}">{{$info->orderDeadline}}</td>
+                                            <td id="orderStatus{{$info->id}}">{{$info->order_status}}</td>
+                                            <td id="paymentStatus{{$info->id}}">{{$info->payment_status}}</td>
+                                            <td id="totalAmount{{$info->id}}">PHP {{number_format($info->totalAmount,2)}}</td>
                                             <td>
-                                                <span data-id={{$service->id}} data-name={{$service->name}} data-type={{$service->type}} data-description={{$service->description}} data-cost={{$service->cost}} style="color:#4c87ed;" class="fa fa-edit editService fa-2x" role="icon"></span>
-                                                <span data-id={{$service->id}} style="color:#E53935; padding-left:10px;" class="fa fa-trash deleteService fa-2x" role="icon"></span>
+                                                <a href="/repairOrder/{{$info->id}}"><span data-id={{$info->id}} style="color:#4c87ed;" class="fa fa-edit editOrder fa-2x" role="icon"></span></a>
+                                                <span data-id={{$info->id}} style="color:#E53935; padding-left:10px;" class="fa fa-trash deleteOrder fa-2x" role="icon"></span>
                                             </td>
                                         </tr>
                                         @endforeach
-                                    @endif --}}
+                                    @endif
                                  </tbody>
                               </table>
                            </div>
@@ -193,147 +201,175 @@
       <script src={{asset('js/material-dashboard.min.js')}}></script>
       <script src={{asset('demo/demo.js')}}></script>
       <script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js'></script>
-      {{-- <script type="text/javascript" src={{asset('materialize/js/materialize.min.js')}}></script> --}}
 
-      <!--start custom script section-->
-      {{-- <script type="text/javascript">
-        $(document).on('click','#addNewServiceButton',function(){
-            $('#addNewServiceModal').modal('open'); 
-        });
-      </script> --}}
-      <!--end custom script section-->
-      <script type="text/javascript">
-        $(document).on('click', '#submitAddService', function(e) {
-            var verify = confirm('Do you want to add this service to the list?');
-            if (verify==true){
-                $('#addNewServiceModal').modal('hide');
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+    <!--start custom script section-->
+    <script type="text/javascript">
+        var count = 0;
+        var grossPrice = 0;
+        var multiplier = 0;
+        $('#grossPrice').text(0);
+        $('#multiplier').text(0);
+        $('#totalPrice').text(0);
+    </script>
+
+    <script type="text/javascript">
+        $(document).on('change', '#carMaker', function(e) {
+            multiplier = $('#carMaker').find('option:selected').data('percentage');
+            $('#multiplier').html($('#carMaker').find('option:selected').data('percentage'));
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            })
+            var formData = {
+                carMaker:$('#carMaker').find('option:selected').data('id'),
+            }
+         
+            $.ajax({
+                type: "POST",
+                data:formData,
+                url: '/liveCarModelUpdate',
+                success: function (data) {
+                    console.log('Repair Order:',data);
+                    $('#carModel').find('option').remove();
+                    $('#carModel').append(
+                        '<option disabled selected>Choose a car model</option>'
+                    );
+                    for(var i = 0; i<data.cars.length;i++){
+                        $('#carModel').append(
+                            '<option data-id="'+data.cars[i].id+'">'+data.cars[i].model+'</option>'
+                        );
                     }
-                })
-    
-                e.preventDefault(); 
-                var formData = {
-                    serviceName:$('#serviceName').val(),
-                    serviceType:$('#serviceType').val(),
-                    serviceDescription:$('#serviceDescription').val(),
-                    serviceCost:$('#serviceCost').val(),
+                    
+                },
+                error: function (data) {
+                    console.log('Data Error:', data);
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).on('click', '#AddServiceButton', function(e) {
+            count = count +1;
+            $('#serviceList').append(
+                '<tr><td>'+count+'</td><td><select class="form-control serviceTypeChange"><option disabled selected>Choose a service type </option> @if(isset($services)) @foreach($services as $info) <option data-id="{{$info->id}}"> {{$info->type}} </option> @endforeach @endif</select></td>'+
+                '<td><select id="serviceNameNum'+count+'" class="form-control serviceNameChange"><option disabled selected>N/A</option></select></td><td id="serviceCost'+count+'"></td></tr>'
+            );
+        });
+    </script>
+
+<script type="text/javascript">
+    $(document).on('change', '.serviceTypeChange', function(e) {
+        $(this).closest('td').next().find('select').find('option').remove();
+        $(this).closest('td').next().find('select').append(
+            '<option selected disabled>Choose a service name</option>'
+        );
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        })
+        var formData = {
+            serviceType:$(this).find('option:selected').data('id'),
+        }
+        var toEdit =  $(this).closest('td').next().find('select');
+
+        $.ajax({
+            type: "POST",
+            data:formData,
+            url: '/liveServiceTypeUpdate',
+            success: function (data) {
+                console.log('Repair Order:',data);
+                for(var i = 0; i<data.services.length;i++){
+                    $(toEdit).append(
+                        '<option data-id="'+data.services[i].id+'">'+data.services[i].name+'</option>'
+                    );
                 }
                 
-                $.ajax({
-                    type: "POST",
-                    url: 'liveAddService',
-                    data: formData,
-                    success: function(data){
-                        console.log('Service Data:',data);
+            },
+            error: function (data) {
+                console.log('Data Error:', data);
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).on('change', '.serviceNameChange', function(e) {
         
-                        $('#servicesList').append(
-                            '<tr><td>'+data.service.id+'</td><td>'+data.service.name+'</td><td>'+data.service.type+'</td><td>'+data.service.description+'</td><td>'+data.service.cost+'</td>'+
-                            '<td><span data-id="'+data.service.id+'" style="color:#4c87ed;" class="fa fa-edit editService fa-2x" role="icon"></span>'+
-                            '<span data-id="'+data.service.id+'" style="color:#E53935; padding-left:10px;" class="fa fa-trash deleteService fa-2x" role="icon"></span></td></tr>'
-                        );
-    
-                        toastr.success('# '+data.service.id+' Service Name - '+data.service.name, 'Successfully added a service!')
-                    },   
-                    error: function (data) {
-                        console.log('Data Error:', data);
-                    }
-                });
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             }
-            return false;
+        })
+
+        var formData = {
+            serviceName:$(this).find('option:selected').data('id'),
+        }
+
+        $.ajax({
+            type: "POST",
+            data:formData,
+            url: '/liveServiceNameUpdate',
+            success: function (data) {
+                console.log('Repair Order:',data);
+                $('#serviceCost'+count).text(data.cost);
+                grossPrice = grossPrice+data.price;
+                $('#grossPrice').text(grossPrice);
+                var totalPrice = 0;
+                totalPrice = totalPrice+((grossPrice*multiplier)+grossPrice);
+                $('#totalPrice').text('PHP '+totalPrice);
+                $('#totalPriceValue').val(totalPrice);
+            },
+            error: function (data) {
+                console.log('Data Error:', data);
+            }
         });
-    </script>
-    <script type="text/javascript">
-        $(document).on('click', '.editService', function(e) {
-            $('#serviceIDEdit').val($(this).data('id'));
-            $('#serviceNameEdit').val($(this).data('name'));
-            $('#serviceTypeEdit').val($(this).data('type'));
-            $('#serviceDescriptionEdit').val($(this).data('description'));
-            $('#serviceCostEdit').val($(this).data('cost'));
-            $('#editServiceModal').modal('show');
-        });
-
-        $(document).on('click', '.deleteService', function(e) {
-           var verify = confirm('Warning: Do you want to delete the service?')
-           if(verify==true){
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                    }
-                })
-            
-                var serviceID = $(this).data('id');
-
-                $.ajax({
-                    type: "DELETE",
-                    url: window.location.pathname + '/' + serviceID,
-                    success: function (data) {
-                        console.log('Deleted Service:',data);
-                        toastr.success('Successfully deleted a service!')
-                    },
-                    error: function (data) {
-                        console.log('Data Error:', data);
-                        toastr.error('System Error has occurred!')
-                    }
-                });
-           }
-           return false;
-        });
-    </script>
-    <script type="text/javascript">
-        $(document).on('click', '#submitEditService', function(e) {
-            var verify = confirm('Do you want to edit this service?');
-            if (verify==true){
-                $('#editServiceModal').modal('hide');
-                var holder = $('#serviceIDEdit').val();
-                if($('#serviceName'+holder).text()!=$('#serviceNameEdit').val() || $('#serviceType'+holder).text()!=$('#serviceTypeEdit').val() || $('#serviceDescription'+holder).text()!=$('#serviceDescriptionEdit').val() ||
-                $('#serviceCost'+holder).text()!=$('#serviceCostEdit').val()){
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                        }
-                    })
-                    
-                    e.preventDefault(); 
-                    
-                    var formData = {
-                        serviceID:$('#serviceIDEdit').val(),
-                        serviceName:$('#serviceNameEdit').val(),
-                        serviceType:$('#serviceTypeEdit').val(),
-                        serviceDescription:$('#serviceDescriptionEdit').val(),
-                        serviceCost:$('#serviceCostEdit').val(),
-                    }
-                    
-                    $.ajax({
-                        type: "POST",
-                        url: 'liveEditService',
-                        data: formData,
-                        success: function(data){
-                            console.log('Service Data:',data);
-
-                            $('#serviceNumber'+data.service.id).closest('tr').find('td:first').html(data.service.id);
-                            $('#serviceNumber'+data.service.id).closest('tr').find('td:first').next().html(data.service.name);
-                            $('#serviceNumber'+data.service.id).closest('tr').find('td:first').next().next().html(data.service.type);
-                            $('#serviceNumber'+data.service.id).closest('tr').find('td:first').next().next().next().html(data.service.description);
-                            $('#serviceNumber'+data.service.id).closest('tr').find('td:first').next().next().next().next().html(data.service.cost);
-                            $('#serviceNumber'+data.service.id).closest('tr').find('td:first').next().next().next().next().next().find('span:first').data({
-                                'name':data.service.name,'type':data.service.type,'description':data.service.description,'cost':data.service.cost
-                            });
-
-                            toastr.success('# '+data.service.id+' Service Name - '+data.service.name, 'Successfully edited a service!');
-                        },   
-                        error: function (data) {
-                            console.log('Data Error:', data);
-                            toastr.error('System Error has occurred!')
-                        }
-                    });
-                }else{
-                    alert('There is no changes made with this service!');
+    });
+</script>
+<script type="text/javascript"> 
+     $(document).on('click', '#submitAddRepairService', function(e) {
+        var verify = confirm('Do you want to add the order');
+        if(verify==true){
+            $('#addNewRepairOrderModal').modal('hide');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                 }
+            })
+
+            var services = [];
+            for(var i = 1; i<=count;i++){
+                services.push($('#serviceNameNum'+i).find('option:selected').data('id'));
             }
-            return false;
-        });
-    </script>
+
+            var formData = {
+                clientName:$('#clientName').find('option:selected').data('id'),
+                carMaker:$('#carMaker').find('option:selected').data('id'),
+                carModel:$('#carModel').find('option:selected').data('id'),
+                expectedDeadline:$('#expectedDeadline').val(),
+                totalPrice:$('#totalPriceValue').val(),
+                services:services,
+            }
+
+            $.ajax({
+                type: "POST",
+                data:formData,
+                url: '/liveAddRepairOrder',
+                success: function (data) {
+                    console.log('Repair Order:',data);
+                    toastr.success('Successfully added a new order!');
+                
+                },
+                error: function (data) {
+                    console.log('Data Error:', data);
+                }
+            });
+        }
+        return false;
+     });
+</script>
+    <!--end custom script section-->
+
    </body>
 </html>

@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\RepairOrders;
+use App\RepairOrderDetails;
+use App\CarMakers;
+use App\Services;
+use App\Clients;
+
 class RepairOrdersController extends Controller
 {
     /**
@@ -14,8 +19,15 @@ class RepairOrdersController extends Controller
     public function index()
     {
         $repairorders = RepairOrders::all();
+        $carmakers = CarMakers::all();
+        $services = Services::all();
+        $clients = Clients::all();
+        
         return view('repairorder')
-                ->with('repairorders',$repairorders);
+                ->with('orders',$repairorders)
+                ->with('services',$services)
+                ->with('clients',$clients)
+                ->with('carmakers',$carmakers);
     }
 
     /**
@@ -47,7 +59,11 @@ class RepairOrdersController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = RepairOrders::where('id','=',$id)->first();
+        $detail = RepairOrderDetails::where('orderID','=',$id)->get();
+        return view('repairorderdetail')
+                    ->with('details',$detail)
+                    ->with('order',$order);
     }
 
     /**
