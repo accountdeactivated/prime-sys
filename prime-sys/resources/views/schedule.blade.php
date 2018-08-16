@@ -14,25 +14,73 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <link href={{asset('css/material-dashboard.css')}} rel="stylesheet" />
-  <link href={{asset('demo/demo.css')}} rel="stylesheet" />
-<!-- Calendar Dependencies --><!-- Calendar Dependencies --><!-- Calendar Dependencies -->
+
+
+    <!--general script section-->
+    <script src={{asset('js/core/jquery.min.js')}}></script>
+    <script src={{asset('js/core/popper.min.js')}}></script>
+    <script src={{asset('js/core/bootstrap-material-design.min.js')}}></script>
+    <script src={{asset('js/plugins/perfect-scrollbar.jquery.min.js')}}></script>
+    <script src={{asset('js/plugins/chartist.min.js')}}></script>
+    <script src={{asset('js/plugins/bootstrap-notify.js')}}></script>
+    <script src={{asset('js/material-dashboard.min.js')}}></script>
+    <script src={{asset('demo/demo.js')}}></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js'></script>
+
+    <!-- Calendar Dependencies --><!-- Calendar Dependencies --><!-- Calendar Dependencies -->
   <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 
+
   <link href="{{asset('dist/equinox.css')}}" rel="stylesheet" type="text/css">
   <script src="{{asset('dist/equinox.min.js')}}"></script>
+
   <!-- Calendar Dependencies --><!-- Calendar Dependencies --><!-- Calendar Dependencies -->
 </head>
+
+<div id="displayPOModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:black; font-family:Helvetica,Arial,sans-serif;" id="dispPOitem">Event Details</h4>
+            </div>
+            <div class="modal-body">
+                <br>
+                <div class="row" style="background-color:#F5F5F5; padding:3px;margin-top:10px;">
+                    <h4  style="font-size:14px; color:black; font-family:Helvetica,Arial,sans-serif;"><b>Supplier Material Order/s</b></h4>
+                    <div class="table-responsive" style="margin-top:10px;">
+                        <table id="materialOrderTable"class="table color-bordered-table info-bordered-table" style="box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); font-family:Helvetica,Arial,sans-serif;">
+                            <thead>
+                            <tr style="font-size:12px; font-weight:700; ">
+                                <th>Material Name</th>
+                                <th>Price per piece</th>
+                                <th>Order Qty </th>
+                                <th><i class="fa fa-gear"></i></th>
+                            </tr>
+                            </thead>
+                            <tbody class="dispOrderMaterialList">
+                            <tr>
+                                <td><input type="text" value="" readonly required></td>
+                                <td><input type="text" value="" readonly required></td>
+                                <td><input type="text" value="" readonly required></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <hr>
+                <label for="client" class="control-label" style="color:black; margin-top:10px; font-family:Helvetica,Arial,sans-serif;"><b>Total Quantity: </b><p id="dispTotalQty"></p></label>
+                <br>
+                <label for="client" class="control-label" style="color:black; margin-top:10px; font-family:Helvetica,Arial,sans-serif;"><b>Total Amount: </b><p id="dispTotalPayment"></p></label>
+            </div>
+        </div>
+    </div>
+</div>
 
 <body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
       <div class="logo">
         <a href="http://www.creative-tim.com" class="simple-text logo-normal">
           PRIME CORPORATION
@@ -46,7 +94,8 @@
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
-          
+
+
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
@@ -100,6 +149,10 @@
           </div>
         </div>
       </nav>
+
+        <button id="showclick" data-toggle="modal" data-target="#displayPOModal"  style="display: none" type=" button" >
+            <i class="material-icons">add_circle</i>
+        </button>
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
@@ -107,8 +160,10 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Schedule of Services</h4>
-                  <p class="card-category">List of all services due</p>
+                    <h4 class="card-title ">
+                        Schedules of Services
+                    </h4>
+                    <p class="card-category">Calendar of Services Due</p>
                 </div>
                 <div class="card-body">
                   <div class="row">
@@ -122,21 +177,6 @@
       </div>
     </div>
   </div>
-  <!--   Core JS Files   -->
-  <script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
-  <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="../assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-  <!-- Chartist JS -->
-  <script src="../assets/js/plugins/chartist.min.js"></script>
-  <!--  Notifications Plugin    -->
-  <script src="../assets/js/plugins/bootstrap-notify.js"></script>
-  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/material-dashboard.min.js?v=2.1.0" type="text/javascript"></script>
-  <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-  <script src="../assets/demo/demo.js"></script>
 </body>
 </html>
 <script>
@@ -145,25 +185,25 @@
     }
     function henlo(val){
         console.log(val);
-        alert(val);
-        //alert(abs);
+
+        $('#showclick').click();
     }
     $('.event-calendar').equinox({
-        onEventClick: function(e){
+        onEventClick: function(){
         },
         events: [
             @foreach($SOschedules as $schedule)
             {
                 start: '{{$schedule->posted_date}}',
                 end: '{{$schedule->posted_date}}',
-                title: '[P0{{$schedule->id}}] Supplier Purchase from {{$schedule->supname}}',
+                title: '[PO_{{$schedule->id}}] Supplier Purchase from {{$schedule->supname}}',
                 url: 'javascript:henlo({{$schedule->id}})',
                 class: '',
                 color: '#{{$schedule->color}}',
-                data: {}
+                data: {bobo:'bobo'}
             },
             @endforeach
-            ]
+        ]
     });
 </script>
 

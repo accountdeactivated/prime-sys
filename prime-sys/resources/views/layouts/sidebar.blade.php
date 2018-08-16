@@ -11,7 +11,7 @@
     <li class="nav-item {{{ (Request::is('schedule') ? 'active' : '') }}}">
         <a class="nav-link" href="./schedule">
             <i class="material-icons">calendar_today</i>
-            <p>Schedule</p>
+            <p>Calendar of Schedule</p>
         </a>
     </li>
     @if(Auth::user()->user_access==1)

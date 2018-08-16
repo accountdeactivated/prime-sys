@@ -325,15 +325,4 @@
          }
 
     });
-    //
-    // $(document).on('click', '#submitSupplier', function() {
-    //     var supplierN = document.getElementById('serviceN').value;
-    //     var supplierA = document.getElementById('serviceA').value;
-    //     var supplierCn = document.getElementById('serviceCn').value;
-    //     var supplierCp = document.getElementById('serviceCp').value;
-    //     if (supplierN != "" && supplierA != "" && supplierCn != "" && supplierCp != ""){
-    //         document.getElementById("submitSupplierEntry").click();
-    //     }
-    //     alert("Please Input The Necessary Details");
-    // });
 </script>
