@@ -142,14 +142,20 @@
                                                 <td>
 
                                                     {!! Form::open(['route'=>['clients.destroy',$client->id],'method'=>'DELETE','enctype'=>'multipart/form-data','class'=>'removeclient','style'=>'display:inline;margin-left:5px']) !!}
-                                                            <i class="material-icons" style="display:inline;margin-left:5px" >delete</i>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" data-original-title="Delete Client">
+
+                                                        <i class="material-icons" style="display:inline;margin-left:5px" >delete</i>
+                                                        <div class="ripple-container"></div></button>
                                                     {!! Form::close() !!}
-                                                            <i class="material-icons update" data-toggle="modal" style="display:inline;margin-left:5px" data-target="#editClientModal"
-                                                               cid="{{$client->id}}"
-                                                               name="{{$client->name}}"
-                                                               email="{{$client->email}}"
-                                                               contact="{{$client->contact}}"
-                                                               address="{{$client->address}}">edit</i>
+
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" data-original-title="Edit Client">
+                                                        <i class="material-icons update" data-toggle="modal" style="display:inline;margin-left:5px" data-target="#editClientModal"
+                                                           cid="{{$client->id}}"
+                                                           name="{{$client->name}}"
+                                                           email="{{$client->email}}"
+                                                           contact="{{$client->contact}}"
+                                                           address="{{$client->address}}">edit</i>
+                                                        <div class="ripple-container"></div></button>
 
                                                 </td>
                                             </tr>
@@ -183,7 +189,7 @@
     var count = 1;
     var count2 = 1;
     $(document).on('click', '.removeclient', function() {
-        var verify = confirm("delete client");
+        var verify = confirm("Are you sure you want to client?");
         if(verify==true){
             $(this).submit();
             $(this).closest('tr').remove();

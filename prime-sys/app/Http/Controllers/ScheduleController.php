@@ -38,7 +38,8 @@ class ScheduleController extends Controller
         }
 
         return view('schedule')
-            ->with('SOschedules',$s);
+            ->with('SOschedules',$s)
+            ->with('ROschedules',$o);
     }
     public static function getSupplier($id){
         return Suppliers::find($id);

@@ -183,9 +183,9 @@
     function redirect() {
         window.location = "http://localhost:8000/home";
     }
-    function henlo(val){
+    function henlo(val,type){
         console.log(val);
-
+        alert(type);
         $('#showclick').click();
     }
     $('.event-calendar').equinox({
@@ -197,10 +197,24 @@
                 start: '{{$schedule->posted_date}}',
                 end: '{{$schedule->posted_date}}',
                 title: '[PO_{{$schedule->id}}] Supplier Purchase from {{$schedule->supname}}',
-                url: 'javascript:henlo({{$schedule->id}})',
+                url: 'javascript:henlo({{$schedule->id}},0)',
                 class: '',
                 color: '#{{$schedule->color}}',
                 data: {bobo:'bobo'}
+            },
+            @endforeach
+
+            @foreach($ROschedules as $schedule)
+            {
+                /* To add after jet is done.
+                start: '{{$schedule->posted_date}}',
+                end: '{{$schedule->posted_date}}',
+                title: '[PO_{{$schedule->id}}] Supplier Purchase from {{$schedule->supname}}',
+                url: 'javascript:henlo({{$schedule->id}},0)',
+                class: '',
+                color: '#{{$schedule->color}}',
+                data: {bobo:'bobo'}
+                */
             },
             @endforeach
         ]
