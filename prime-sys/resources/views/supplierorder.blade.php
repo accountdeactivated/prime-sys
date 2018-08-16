@@ -28,6 +28,9 @@
           </div>
       </div>
 
+          @if(Session::has('success_create'))
+              <script> demo.showNotification('top','center','successfully created','Supplier Order') </script>
+          @endif
         <div id="addNewPOModal" class="modal" tabindex="-2" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -326,3 +329,14 @@
 
     });
 </script>
+
+@if(Session::has('success_create'))
+    <script> demo.showNotification('top','center','Successfully added a','Supplier Order'); </script>
+@endif
+@if(Session::has('success_update'))
+    <script>
+        demo.showNotification('top','center','Successfully updated credentials of','Supplier Order'); </script>
+@endif
+@if(Session::has('success_delete'))
+    <script> demo.showNotification('top','center','Successfully deleted ','Supplier Order'); </script>
+@endif

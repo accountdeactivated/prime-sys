@@ -6,6 +6,7 @@ use App\Materials;
 use App\SupplierOrderDetails;
 use App\SupplierOrders;
 use App\Suppliers;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 class SuppliersController extends Controller
@@ -76,7 +77,7 @@ class SuppliersController extends Controller
         $driver->created_at = null;
         $driver->updated_at = null;
         $driver->save();
-        Session::flash('success','Successfully added a fucking supplier!');
+        Session::flash('success_create','Successfully added a fucking supplier!');
         return redirect("/supplier");
     }
 

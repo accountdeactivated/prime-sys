@@ -32,6 +32,7 @@
     commented by: PrivateAirJET
     -->
 
+
     <div id="addClientModal" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -111,6 +112,7 @@
                         <div class="card">
                             <div class="card-header card-header-primary">
                                 <h4 class="card-title ">Client List
+                                        Top Center<div class="ripple-container"></div></button>
                                     <button id="addNewServiceButton" data-toggle="modal" data-target="#addClientModal" type=" button" rel="tooltip" title="Add New Client" class="btn btn-primary btn-fab btn-fab-mini btn-round">
                                         <i class="material-icons">add_circle</i>
                                     </button>
@@ -274,3 +276,15 @@
     //     alert("Please Input The Necessary Details");
     // });
 </script>
+
+
+@if(Session::has('success_create'))
+    <script> demo.showNotification('top','center','Successfully added a','Client'); </script>
+@endif
+@if(Session::has('success_update'))
+    <script>
+        demo.showNotification('top','center','Successfully updated credentials of','Client'); </script>
+@endif
+@if(Session::has('success_delete'))
+    <script> demo.showNotification('top','center','Successfully deleted ','Client'); </script>
+@endif

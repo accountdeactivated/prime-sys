@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Clients;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpKernel\Client;
 
 class ClientsController extends Controller
@@ -33,6 +34,8 @@ class ClientsController extends Controller
         $c->contact = $request->contact;
         $c->address = $request->address;
         $c->save();
+
+        Session::flash('success_update','Successfully updated credentials!');
         return redirect('/clients');
     }
 
@@ -50,6 +53,8 @@ class ClientsController extends Controller
         $c->contact = $request->clientcontact;
         $c->address = $request->clientaddress;
         $c->save();
+
+        Session::flash('success_create','Successfully created a client!');
         return redirect('/clients');
     }
 
@@ -98,6 +103,7 @@ class ClientsController extends Controller
         $product = Clients::find($id);
         $product->delete();
 
+        Session::flash('success_delete','Successfully deleted');
         return redirect("/clients");
     }
 }

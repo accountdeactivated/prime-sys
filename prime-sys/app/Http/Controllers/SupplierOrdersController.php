@@ -121,6 +121,7 @@ class SupplierOrdersController extends Controller
             $ctr+=1;
         }
 
+        Session::flash('success_create','Successfully added an order');
         return redirect("/supplierOrder");
     }
 

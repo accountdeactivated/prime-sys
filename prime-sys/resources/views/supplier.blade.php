@@ -27,9 +27,6 @@
               @include('layouts.sidebar')
           </div>
       </div>
-          @if(Session::has('success'))
-              <script>alert('successfully added supplier')</script>
-          @endif
 
       <!--modal_starts_here
         commented by: PrivateAirJET
@@ -210,3 +207,14 @@
     //     alert("Please Input The Necessary Details");
     // });
 </script>
+
+@if(Session::has('success_create'))
+    <script> demo.showNotification('top','center','Successfully added a','Supplier'); </script>
+@endif
+@if(Session::has('success_update'))
+    <script>
+        demo.showNotification('top','center','Successfully updated credentials of','Client'); </script>
+@endif
+@if(Session::has('success_delete'))
+    <script> demo.showNotification('top','center','Successfully deleted ','Client'); </script>
+@endif
