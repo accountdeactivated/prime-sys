@@ -48,11 +48,18 @@ Route::post('logd', 'LoginController@store')->name('logd');
 Route::post('upd', 'ClientsController@create')->name('upd');
 
 Route::resource('repairOrder', 'RepairOrdersController');
-Route::resource('reports', 'ReportsController');
 Route::resource('logout', 'LogoutController');
 Route::post('/supplier/create', 'SuppliersController@create')->name('supplier.create');
 Route::post('getPOdetails','SupplierOrdersController@ajaxGetPOdetails');
 
+//Reports Route
+Route::resource('reports', 'ReportsController');
+Route::resource('procreport', 'ReportsController');
+Route::resource('invtreport', 'ReportsController');
+Route::resource('salsreport', 'ReportsController');
+
+//Schedule Route
+Route::resource('schedule', 'ScheduleController');
 //Live AJAX Update
 //Done By: PrivateAirJET
 Route::post('liveAddService','ServiceAddLiveUpdateController@liveUpdate');

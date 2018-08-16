@@ -15,6 +15,14 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <link href={{asset('css/material-dashboard.css')}} rel="stylesheet" />
   <link href={{asset('demo/demo.css')}} rel="stylesheet" />
+<!-- Calendar Dependencies --><!-- Calendar Dependencies --><!-- Calendar Dependencies -->
+  <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+  <link href="{{asset('dist/equinox.css')}}" rel="stylesheet" type="text/css">
+  <script src="{{asset('dist/equinox.min.js')}}"></script>
+  <!-- Calendar Dependencies --><!-- Calendar Dependencies --><!-- Calendar Dependencies -->
 </head>
 
 <body class="">
@@ -96,72 +104,15 @@
       <div class="content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Reports</h4>
-                  <p class="card-category">List of all the Reports</p>
+                  <h4 class="card-title">Schedule of Services</h4>
+                  <p class="card-category">List of all services due</p>
                 </div>
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                      <div class="card card-stats">
-                        <div class="card-header card-header-success card-header-icon">
-                          <div class="card-icon">
-                            <i class="material-icons">store</i>
-                          </div>
-                          <p class="card-category">
-                            <a href="./Main_Controller">
-                              <p>Daily Sales Report</p>
-                            </a>
-                          </p>
-                        </div>
-                        <div class="card-footer">
-                          <div class="stats">
-                            <i class="material-icons">update</i>not working
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                      <div class="card card-stats">
-                        <div class="card-header card-header-info card-header-icon">
-                          <div class="card-icon">
-                            <i class="material-icons">build</i>
-                          </div>
-                          <p class="card-category">
-                            <a href="./Main_Controller">
-                              Procurement Report
-                            </a>
-                        </div>
-                        <div class="card-footer">
-                          <div class="stats">
-                            <i class="material-icons">update</i>under construction
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                      <div class="card card-stats">
-                        <div class="card-header card-header-warning card-header-icon">
-                          <div class="card-icon">
-                            <i class="material-icons">calendar_today</i>
-                          </div>
-                          <p class="card-category">
-                            <a href="">
-                            Inventory Report
-                            </a>
-                          </p>
-                        </div>
-                        <div class="card-footer">
-                          <div class="stats">
-                            <i class="material-icons">update</i>not working
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <div class="event-calendar"></div>
                   </div>
                 </div>
               </div>
@@ -192,5 +143,54 @@
     function redirect() {
         window.location = "http://localhost:8000/home";
     }
+    function henlo(val){
+        console.log(val);
+        alert(1);
+        //alert(abs);
+    }
+    $('.event-calendar').equinox({
+        onEventClick: function(e){
+        },
+        events: [
+            @foreach($schedules as $schedule)
+            {
+                start: '2018-04-20 17:30',
+                end: '2018-04-22 17:30',
+                title: '.Net',
+                url: '#',
+                class: '',
+                color: '#000',
+                data: {}},
+            @endforeach
+
+            {
+                start: '2018-05-20 17:30:00',
+                end: '2018-05-22 17:30:00',
+                title: 'Event 2',
+                url: '#',
+                class: 'custom-class',
+                color: '#000',
+                data: {hace:"skwater"}
+            },
+            {
+                start: '2018-08-20 00:00:00',
+                end: '2018-08-20 1:00:00',
+                title: 'Gagito',
+                url: 'javascript:henlo('+'1'+')',
+                class: 'xd',
+                color: '#000',
+                data: {hace:"lissa magpants"}
+            },{
+                start: '2018-08-20 02:00:00',
+                end: '2018-08-20 3:00:00',
+                title: 'Gagito',
+                url: 'javascript:henlo('+'1'+')',
+                class: 'xd',
+                color: '#000',
+                data: {hace:"lissa magpants"}
+            }
+            ]
+    });
+</script>
 
 </script>

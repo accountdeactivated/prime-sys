@@ -8,7 +8,12 @@
             <p>Dashboard</p>
         </a>
     </li>
-
+    <li class="nav-item {{{ (Request::is('schedule') ? 'active' : '') }}}">
+        <a class="nav-link" href="./schedule">
+            <i class="material-icons">calendar_today</i>
+            <p>Schedule</p>
+        </a>
+    </li>
     @if(Auth::user()->user_access==1)
         <li class="nav-item {{{ (Request::is('supplierOrder') ? 'active' : '') }}}">
             <a class="nav-link" href="./supplierOrder">
@@ -61,13 +66,12 @@
         </li>
     @else
         <li class="nav-item {{{ (Request::is('reports') ? 'active' : '') }}}">
-        <a class="nav-link" href="./reports">
+        <a class="nav-link" href="./schedule">
             <i class="material-icons">poll</i>
             <p>Reports</p>
         </a>
-    </li>
+        </li>
     @endif
-
     <li class="nav-item {{{ (Request::is('clients') ? 'active' : '') }}}">
         <a class="nav-link" href="./clients">
             <i class="material-icons">group</i>
