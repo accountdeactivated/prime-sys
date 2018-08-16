@@ -164,7 +164,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="card">
-                <div class="card-header card-header-primary">
+                <div class="card-header card-header-info">
                     <h4 class="card-title ">
                         Schedules of Services
                     </h4>
