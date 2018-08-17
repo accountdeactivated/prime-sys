@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Materials;
 use Faker\Provider\ka_GE\DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class MaterialsController extends Controller
 {
@@ -16,6 +17,13 @@ class MaterialsController extends Controller
     public function index()
     {
         $mat = Materials::all();
+
+        foreach ($mat as $m){
+            $m['cond'] = false;
+            if ($m['restock_qty'] >= $m['current_qty']){
+                $m['cond'] = true;
+            }
+        }
         return view('material')
             ->with('materials',$mat);
     }
@@ -41,13 +49,14 @@ class MaterialsController extends Controller
         $maty = new Materials();
         $maty->carID = null;
         $maty->name = $request->matname;
-        $maty->restock_qty = null;
+        $maty->restock_qty = $request->restock_qty;
         $maty->current_qty = $request->matcurrent_qty;
         $maty->status = "Available";
         $maty->created_at = Date('Y-m-d');
         $maty->updated_at = now();
         $maty->price = $request->price;
         $maty->save();
+        Session::flash('success_create','Successfully added a fucking supplier!');
         return redirect('/materials');
     }
 

@@ -44,12 +44,12 @@
                     <!--car_maker-->
                     <label for="carMaker" style="color:black;">Car Maker</label>
                     <input type="text" class="form-control" id="carMaker" placeholder="Enter the car company name">
-                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the name of the car company. <b style="color:#E53935;">*Required</b></span>
+                    {{--<span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the name of the car company. <b style="color:#E53935;">*Required</b></span>--}}
                     <br>
                     <!--car_multiplier-->
                     <label for="carMakerMultiplier" style="margin-top:20px; color:black;">Car Multiplier</label>
                     <input type="number" step="0.01" class="form-control" id="carMakerMultiplier" placeholder="Enter the service cost multiplier.">
-                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the service multiplier for the company. <b style="color:#E53935;">*Required</b></span>
+                    {{--<span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the service multiplier for the company. <b style="color:#E53935;">*Required</b></span>--}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

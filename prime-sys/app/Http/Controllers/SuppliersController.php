@@ -6,8 +6,8 @@ use App\Materials;
 use App\SupplierOrderDetails;
 use App\SupplierOrders;
 use App\Suppliers;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class SuppliersController extends Controller
 {

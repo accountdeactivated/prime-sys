@@ -46,7 +46,7 @@
                     <!--service_name-->
                     <label for="serviceName" style="color:black;">Service Name</label>
                     <input type="email" class="form-control" id="serviceName" placeholder="Enter the service name">
-                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the name of the service. <b style="color:#E53935;">*Required</b></span>
+                    {{--<span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the name of the service. <b style="color:#E53935;">*Required</b></span>--}}
                     <br>
                     <!--service_type-->
                     <label for="serviceType" style="margin-top:20px; color:black;">Service Type</label>
@@ -56,17 +56,17 @@
                         <option>Painting</option>
                         <option>Washing</option>
                     </select>
-                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the type of the service. <b style="color:#E53935;">*Required</b></span>
+                    {{--<span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the type of the service. <b style="color:#E53935;">*Required</b></span>--}}
                     <br>
                     <!--service_description-->
                     <label for="serviceDescription" style="margin-top:20px; color:black;">Service Description</label>
                     <textarea class="form-control" id="serviceDescription" rows="2"></textarea>
-                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the brief description of the service. <b style="color:#E53935;">*Required</b></span>
+                    {{--<span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the brief description of the service. <b style="color:#E53935;">*Required</b></span>--}}
                     <br>
                     <!--service_cost-->
                     <label for="serviceCost" style="margin-top:20px; color:black;">Service Cost</label>
                     <input type="number" class="form-control" id="serviceCost" placeholder="Enter the service cost.">
-                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the cost of the service. <b style="color:#E53935;">*Required</b></span>
+                    {{--<span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the cost of the service. <b style="color:#E53935;">*Required</b></span>--}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

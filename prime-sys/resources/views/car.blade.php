@@ -51,17 +51,17 @@
                             @endforeach
                         @endif
                     </select>
-                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Choose among the list the car maker of the new car. <b style="color:#E53935;">*Required</b></span>
+                    {{--<span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Choose among the list the car maker of the new car. <b style="color:#E53935;">*Required</b></span>--}}
                     <br>
                     <!--car_model-->
                     <label for="carModel" style="margin-top:20px; color:black;">Car Model</label>
                     <input type="text" class="form-control" id="carModel" placeholder="Enter the model of the car.">
-                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the model of the car <b style="color:#E53935;">*Required</b></span>
+                    {{--<span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the model of the car <b style="color:#E53935;">*Required</b></span>--}}
                     <br>
                      <!--car_year-->
                      <label for="carYearModel" style="margin-top:20px; color:black;">Car Year</label>
                      <input type="year" class="form-control" id="carYearModel" placeholder="Enter the year model of the car.">
-                     <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the year model of the car <b style="color:#E53935;">*Required</b></span>
+                     {{--<span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the year model of the car <b style="color:#E53935;">*Required</b></span>--}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

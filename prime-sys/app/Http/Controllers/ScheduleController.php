@@ -36,7 +36,13 @@ class ScheduleController extends Controller
 
         foreach ($o as $z){
             $z['clname'] = self::getClient($z->clientID)['name'];
-            $z['color'] ="a7fc79";
+            if ($z['payment_status'] == 'Processing'){
+                $z['color'] ="e5f442" ;
+            }
+            else{
+
+                $z['color'] ="a7fc79";
+            }
         }
 
         return view('schedule')

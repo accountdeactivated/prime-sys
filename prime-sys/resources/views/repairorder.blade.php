@@ -53,7 +53,7 @@
                             @endforeach
                         @endif
                     </select>
-                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the name of the client. <b style="color:#E53935;">*Required</b></span>
+                    {{--<span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the name of the client. <b style="color:#E53935;">*Required</b></span>--}}
                     <br>
                     <!--car_maker-->
                     <label for="carMaker" style="margin-top:20px; color:black;">Car Maker</label>
@@ -65,14 +65,14 @@
                             @endforeach
                         @endif
                     </select>
-                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the car manufacturer from the order. <b style="color:#E53935;">*Required</b></span>
+                    {{--<span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the car manufacturer from the order. <b style="color:#E53935;">*Required</b></span>--}}
                     <br>
                     <!--car_model-->
                     <label for="carModel" style="margin-top:20px; color:black;">Car Model</label>
                     <select class="form-control" data-style="btn btn-link" id="carModel">
                         <option>N/A</option>
                     </select>
-                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the model of the car.<b style="color:#E53935;">*Required</b></span>
+                    {{--<span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the model of the car.<b style="color:#E53935;">*Required</b></span>--}}
                     <hr>
 
                     <!--repair-order-->
@@ -123,7 +123,7 @@
                     <!--expected_deadline-->
                     <label for="expectedDeadline" style="margin-top:20px; color:black;">Expected Deadline</label>
                     <input type="date" class="form-control" id="expectedDeadline">
-                    <span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the repair order/s expected deadline. <b style="color:#E53935;">*Required</b></span>
+                    {{--<span class="text-muted" style="font-size:12px; color:black; font-family:Helvetica,Arial,sans-serif;">Note: Enter the repair order/s expected deadline. <b style="color:#E53935;">*Required</b></span>--}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
