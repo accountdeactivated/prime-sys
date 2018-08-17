@@ -7,6 +7,7 @@ use App\SupplierOrderDetails;
 use App\SupplierOrders;
 use App\Suppliers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class SupplierOrdersController extends Controller
 {

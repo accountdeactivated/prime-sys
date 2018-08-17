@@ -267,17 +267,15 @@
             },
             @endforeach
 
-            @foreach($ROschedules as $schedule)
+            @foreach($ROschedules as $chedule)
             {
-                /* To add after jet is done.
-                start: '{{$schedule->posted_date}}',
-                end: '{{$schedule->posted_date}}',
-                title: '[PO_{{$schedule->id}}] Supplier Purchase from {{$schedule->supname}}',
-                url: 'javascript:henlo({{$schedule->id}},0)',
+                start: '{{$chedule->created_at}}',
+                end: '{{$chedule->created_at}}',
+                title: '[RO_{{$chedule->id}}] Client Order from {{$chedule->clname}}',
+                url: '/repairOrder/{{$chedule->id}}',
                 class: '',
-                color: '#{{$schedule->color}}',
+                color: '#{{$chedule->color}}',
                 data: {bobo:'bobo'}
-                */
             },
             @endforeach
         ]

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Clients;
 use App\RepairOrders;
 use App\SupplierOrders;
 use App\Suppliers;
@@ -34,6 +35,7 @@ class ScheduleController extends Controller
         }
 
         foreach ($o as $z){
+            $z['clname'] = self::getClient($z->clientID)['name'];
             $z['color'] ="a7fc79";
         }
 
@@ -43,5 +45,8 @@ class ScheduleController extends Controller
     }
     public static function getSupplier($id){
         return Suppliers::find($id);
+    }
+    public static function getClient($id){
+        return Clients::find($id);
     }
 }
