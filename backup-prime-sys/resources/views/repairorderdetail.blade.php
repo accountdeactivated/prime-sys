@@ -176,6 +176,7 @@
 			            success: function (data) {
 			                console.log('Repair Order:',data);
 			                toastr.success('Successfully updated the payment status!');
+							location.reload();
 			            },
 			            error: function (data) {
 			                console.log('Data Error:', data);
@@ -217,6 +218,7 @@
 			            success: function (data) {
 			                console.log('Repair Order:',data);
 			                toastr.success('Successfully updated the detail status!');
+							location.reload();
 			            },
 			            error: function (data) {
 			                console.log('Data Error:', data);
