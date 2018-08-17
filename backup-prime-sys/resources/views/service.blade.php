@@ -308,7 +308,6 @@
                         data: formData,
                         success: function(data){
                             console.log('Service Data:',data);
-
                             $('#serviceNumber'+data.service.id).closest('tr').find('td:first').html(data.service.id);
                             $('#serviceNumber'+data.service.id).closest('tr').find('td:first').next().html(data.service.name);
                             $('#serviceNumber'+data.service.id).closest('tr').find('td:first').next().next().html(data.service.type);
