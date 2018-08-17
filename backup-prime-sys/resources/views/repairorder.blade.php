@@ -359,7 +359,7 @@
                 success: function (data) {
                     console.log('Repair Order:',data);
                     toastr.success('Successfully added a new order!');
-                
+                    location.reload();
                 },
                 error: function (data) {
                     console.log('Data Error:', data);
