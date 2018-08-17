@@ -64,6 +64,18 @@
                 <p>Reports</p>
             </a>
         </li>
+        <li class="nav-item {{{ (Request::is('car') ? 'active' : '') }}}">
+            <a class="nav-link" href="./car">
+                <i class="material-icons">gavel</i>
+                <p>Cars</p>
+            </a>
+        </li>
+        <li class="nav-item {{{ (Request::is('carmaker') ? 'active' : '') }}}">
+            <a class="nav-link" href="./carmaker">
+                <i class="material-icons">gavel</i>
+                <p>Car Makers</p>
+            </a>
+        </li>
     @else
         <li class="nav-item {{{ (Request::is('reports') ? 'active' : '') }}}">
         <a class="nav-link" href="./schedule">

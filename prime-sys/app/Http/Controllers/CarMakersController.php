@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\CarMakers;
 
 class CarMakersController extends Controller
 {
@@ -13,7 +14,9 @@ class CarMakersController extends Controller
      */
     public function index()
     {
-        //
+        $carmakers = CarMakers::all();
+        return view('carmaker')
+                ->with('carmakers',$carmakers);
     }
 
     /**

@@ -60,10 +60,20 @@ Route::resource('salsreport', 'ReportsController');
 
 //Schedule Route
 Route::resource('schedule', 'ScheduleController');
+
 //Live AJAX Update
 //Done By: PrivateAirJET
 Route::post('liveAddService','ServiceAddLiveUpdateController@liveUpdate');
+Route::post('liveAddCar','CarAddLiveUpdateController@liveUpdate');
+Route::post('liveAddCarMaker','CarMakerAddLiveUpdateController@liveUpdate');
 Route::post('liveEditService','ServiceEditLiveUpdateController@liveUpdate');
+Route::post('liveCarModelUpdate','CarModelLiveUpdateController@liveUpdate');
+Route::post('liveServiceTypeUpdate','ServiceTypeLiveUpdateController@liveUpdate');
+Route::post('liveServiceNameUpdate','ServiceNameLiveUpdateController@liveUpdate');
+Route::post('liveAddRepairOrder','RepairServiceAddLiveUpdateController@liveUpdate');
+Route::post('liveRepairOrderStatusUpdate','RepairOrderStatusLiveUpdateController@liveUpdate');
+Route::post('liveRepairOrderDetailStatusUpdate','RepairOrderDetailStatusLiveUpdateController@liveUpdate');
+
 
 
 //Auth Route
