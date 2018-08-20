@@ -49,9 +49,13 @@ class MaterialsController extends Controller
         $maty = new Materials();
         $maty->carID = null;
         $maty->name = $request->matname;
+<<<<<<< Updated upstream
         $maty->restock_qty = $request->restock_qty;
+=======
+        $maty->restock_qty = $request->matrestock_qty;
+>>>>>>> Stashed changes
         $maty->current_qty = $request->matcurrent_qty;
-        $maty->status = "Available";
+        $maty->status = "Sufficient";
         $maty->created_at = Date('Y-m-d');
         $maty->updated_at = now();
         $maty->price = $request->price;

@@ -51,9 +51,11 @@
                     <input type="number" class="form-control" id="curQty" name="matcurrent_qty" placeholder="Enter amount" min="0" required>
                     <br>
 
-                    <label for="serviceName" style="color:black;">Restocking Quantity</label>
-                    <input type="number" class="form-control" id="curQty" name="restock_qty" placeholder="Enter amount" min="0" required>
+                    <label for="serviceName" style="color:black;">Maintaining Stock</label>
+                    <input type="number" class="form-control" id="curQty" name="matrestock_qty" placeholder="Enter amount" min="0" required>
                     <br>
+
+
                     <label for="serviceName" style="color:black;">Price</label>
                     <input type="number" class="form-control" id="price" name="price" placeholder="Enter Price" min="0" required>
                     <br>
@@ -99,9 +101,8 @@
                                         <th><span class="fa fa-vcard" role="icon"></span> Name</th>
                                         <th><span class="fa fa-file-text" role="icon"></span> Restock Quantity</th>
                                         <th><span class="fa fa-newspaper-o" role="icon"></span> Current Quantity</th>
-
                                         <th><span class="fa fa-money" role="icon"></span> Created At</th>
-                                        <th><span class="fa fa-money" role="icon"></span> Remarks</th>
+                                        <th><span class="fa fa-money" role="icon"></span> Status</th>
                                         </thead>
                                         <tbody id="suppliers" style="font-size:20px;">
                                         @foreach($materials as $material)
@@ -110,10 +111,12 @@
                                                 <td>{{$material->restock_qty}}</td>
                                                 <td>{{$material->current_qty}}</td>
                                                 <td class="text-center">{{$material->created_at}}</td>
-                                                <td class="text-center">@if($material->current_qty >= $material->restock_qty)
-                                                        <b style="color:chartreuse">Supplies Sufficient</b>
-                                                                        @elseif($material->current_qty < $material->restock_qty)
-                                                        <b style="color:red">Supplies Insufficient</b>@endif</td>
+                                                @if(value($material->current_qty) >= value($material->restock_qty))
+                                                    <td><span style="color: limegreen">Sufficient Suplies</span></td>
+                                                @else
+                                                    <td><span style="font-weight: bold; color: red">Insufficient Suplies</span></td>
+                                                @endif
+                                                {{--<td>{{$material->status}}</td>--}}
                                             </tr>
                                         @endforeach
                                         </tbody>
